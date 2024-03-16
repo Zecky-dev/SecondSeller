@@ -10,7 +10,7 @@
 
 - İlanın Konumunun Görüntülenmesi: Kullanıcılar, ilanların konumunu harita üzerinde görüntüleyebilirler. Bu özellik, kullanıcılara belirli bir ürün veya hizmetin nerede bulunduğunu daha net bir şekilde görmelerini sağlar, böylece satın alma kararlarını daha iyi bir şekilde verebilirler.
 
-- Kategoriye Göre Filtreleme: Kullanıcılar, belirli bir kategoriye ait olan ikinci el ürünleri filtreleyebilirler. Bu özellik, kullanıcıların aradıkları ürünleri daha hızlı bulmalarını sağlar ve gereksiz bilgileri eleyerek arama sonuçlarını optimize eder. Kullanıcılar, kişisel tercihlerine ve ihtiyaçlarına en uygun ürünleri bulmak için kategorilere göre filtreleme yapabilirler. 
+- Kategoriye Göre Filtreleme: Kullanıcılar, belirli bir kategoriye ait olan ikinci el ürünleri filtreleyebilirler. Bu özellik, kullanıcıların aradıkları ürünleri daha hızlı bulmalarını sağlar ve gereksiz bilgileri eleyerek arama sonuçlarını optimize eder. Kullanıcılar, kişisel tercihlerine ve ihtiyaçlarına en uygun ürünleri bulmak için kategorilere göre filtreleme yapabilirler.  
 
 
 
