@@ -12,8 +12,8 @@
 ## Selin Aydemir
 
 - Fiyat teklifi gönderme
-- Konum paylaşma
 - Favorilerin listelenmesi
+- Arama yapma
 - İlanı silme
 - İlanın satıldı olarak işaretlenmesi
 - Otomatik mesaj
