@@ -1,6 +1,6 @@
 # Durum Senaryo Şablonları
 
-* [Zekeriya Dönmez Durum Senaryo Şablonu]()
+* [Zekeriya Dönmez Durum Senaryo Şablonu](./zekeriya_donmez_use_case.pdf)
 
 * [İsmail Kaya Durum Şablonu]()
 
