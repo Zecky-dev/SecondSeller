@@ -19,10 +19,10 @@
 - Selin Aydemir
 
 1. [Proje Planı](https://www.ibb.co/KD4mMqV)
-2. [Gereksinim Analizi](/gereksinimler/gereksinim_analizi.md)
-3. [Durum Diyagramı]()
-4. [Durum Senaryoları]()
-5. [Veritabanı Diyagramı]()
+2. [Gereksinim Analizi](proje_klasorleri/gereksinimler/gereksinim_analizi.md)
+3. [Durum Diyagramı](https://ibb.co/1fZL9wd)
+4. [Durum Senaryoları](proje_klasorleri/durum_senaryolari/durum_senaryolari.md)
+5. [Veritabanı Diyagramı](https://ibb.co/3WHmKD5)
 6. [Front-End]()
 7. [Back-End]()
 8. [Test]()
