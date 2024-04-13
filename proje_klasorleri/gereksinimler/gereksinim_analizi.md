@@ -32,7 +32,7 @@
 - Engelleme
 - Profil düzenleme
 - Koyu & Açık Tema
-- Fiyata göre filtreleme (fiyat aralığı)
+- Fiyat aralığına göre filtreleme
 
 ## Kamil Özdemir
 - Hesap silme

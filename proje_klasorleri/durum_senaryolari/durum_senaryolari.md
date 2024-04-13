@@ -4,7 +4,7 @@
 
 * [İsmail Kaya Durum Şablonu]()
 
-* [Alper Avcı Durum Şablonu]()
+* [Alper Avcı Durum Şablonu](alper_avci_use_case.pdf)
 
 * [Kamil Özdemir Durum Şablonu]()
 

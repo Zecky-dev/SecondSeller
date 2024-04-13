@@ -19,7 +19,7 @@
 - Selin Aydemir
 
 1. [Proje Planı](https://www.ibb.co/KD4mMqV)
-2. [Gereksinim Analizi](proje_klasorleri/gereksinimler/gereksinim_analizi.md)
+2. [[Gereksinim Analizi](proje_klasorleri/gereksinimler/gereksinim_analizi.md)
 3. [Durum Diyagramı](https://ibb.co/1fZL9wd)
 4. [Durum Senaryoları](proje_klasorleri/durum_senaryolari/durum_senaryolari.md)
 5. [Veritabanı Diyagramı](https://ibb.co/3WHmKD5)
