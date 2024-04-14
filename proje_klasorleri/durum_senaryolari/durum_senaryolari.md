@@ -6,6 +6,6 @@
 
 * [Alper Avcı Durum Şablonu](alper_avci_use_case.pdf)
 
-* [Kamil Özdemir Durum Şablonu]()
+* [Kamil Özdemir Durum Şablonu](./kamil_ozdemir_use_case.pdf)
 
 * [Selin Aydemir Durum Şablonu](./selin_aydemir_use_case.pdf)
