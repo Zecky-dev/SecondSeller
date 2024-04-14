@@ -8,4 +8,4 @@
 
 * [Kamil Özdemir Durum Şablonu]()
 
-* [Selin Aydemir Durum Şablonu]()
+* [Selin Aydemir Durum Şablonu](./selin_aydemir_use_case.pdf)
