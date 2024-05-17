@@ -1,0 +1,1 @@
+// Global fonksiyonlar burada bulunacak

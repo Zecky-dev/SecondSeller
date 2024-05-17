@@ -28,10 +28,6 @@
 8. [Test]()
 9. [Geliştirici ve Kullanıcı Dökümantasyonları]()
 
-
-
 # Planlama Çizelgesi - Ek
 
-* [Çizelge | Trello](https://trello.com/invite/b/ENIJ4ZpO/ATTI01f9e93770f2e1de38fa88ae877f596f9C7B51DD/second-seller-project)
-
-
+- [Çizelge | Trello](https://trello.com/invite/b/ENIJ4ZpO/ATTI01f9e93770f2e1de38fa88ae877f596f9C7B51DD/second-seller-project)
