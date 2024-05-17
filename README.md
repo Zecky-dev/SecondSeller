@@ -19,7 +19,7 @@
 - Selin Aydemir
 
 1. [Proje Planı](https://www.ibb.co/KD4mMqV)
-2. [[Gereksinim Analizi](proje_klasorleri/gereksinimler/gereksinim_analizi.md)
+2. [Gereksinim Analizi](proje_klasorleri/gereksinimler/gereksinim_analizi.md)
 3. [Durum Diyagramı](https://ibb.co/1fZL9wd)
 4. [Durum Senaryoları](proje_klasorleri/durum_senaryolari/durum_senaryolari.md)
 5. [Veritabanı Diyagramı](https://ibb.co/3WHmKD5)
@@ -28,10 +28,6 @@
 8. [Test]()
 9. [Geliştirici ve Kullanıcı Dökümantasyonları]()
 
-
-
 # Planlama Çizelgesi - Ek
 
-* [Çizelge | Trello](https://trello.com/invite/b/ENIJ4ZpO/ATTI01f9e93770f2e1de38fa88ae877f596f9C7B51DD/second-seller-project)
-
-
+- [Çizelge | Trello](https://trello.com/invite/b/ENIJ4ZpO/ATTI01f9e93770f2e1de38fa88ae877f596f9C7B51DD/second-seller-project)
