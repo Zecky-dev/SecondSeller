@@ -3,7 +3,7 @@ import {Linking, StatusBar, View} from 'react-native';
 import {useIsFocused, CommonActions} from '@react-navigation/native';
 
 // Constants
-import {CONSTANTS} from '@utils';
+import {CONSTANTS, COLORS} from '@utils';
 import THEMECOLORS from '@utils/colors';
 
 // React Navigation
@@ -34,6 +34,9 @@ import {
   UpdatePassword,
   OwnerProfile,
 } from '@pages';
+
+// Components
+import {ChatHeader} from '@components';
 
 // Context
 import UserContextProvider, {useUser} from './context/UserProvider';
@@ -122,7 +125,7 @@ const ProfileMessagesStack = () => {
       <Stack.Screen
         component={Chat}
         name="ChatScreen"
-        /*options={({route}) => {
+        options={({route}) => {
           return {
             header: () => (
               <ChatHeader
@@ -132,7 +135,7 @@ const ProfileMessagesStack = () => {
               />
             ),
           };
-        }}*/
+        }}
       />
     </Stack.Navigator>
   );
@@ -148,7 +151,7 @@ const AdvertisementDetailStack = () => {
       <Stack.Screen
         component={Chat}
         name="ChatScreen"
-        /*options={({route}) => {
+        options={({route}) => {
           return {
             headerShown: true,
             header: () => (
@@ -159,7 +162,7 @@ const AdvertisementDetailStack = () => {
               />
             ),
           };
-        }}*/
+        }}
       />
 
       <Stack.Screen
@@ -366,14 +369,7 @@ const AuthStack = () => {
 };
 
 const App = () => {
-  const {user, setUser} = useUser();
-  const {theme} = useTheme();
-  const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
-
-  useEffect(() => {
-    // Uygulama açıldığında token varlığı kontrol edilecek
-  }, []);
-
+  const {user} = useUser();
   return (
     <>
       <View style={{flex: 1}}>
