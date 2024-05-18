@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
 
 import vector from '@assets/images/app_icon.png';
 import {COLORS, CONSTANTS} from '@utils';
 
-import {AdvertisementCard, ChatBubble} from '@components';
+import {AdvertisementCard, ChatBubble, OptionPicker, Slider} from '@components';
 import ThemeContextProvider from '@context/ThemeContext';
 import UserContextProvider from '@context/UserProvider';
 
@@ -63,7 +63,15 @@ const locationMessage = JSON.stringify({
   latitude: 37.8309414,
 });
 
+const images = [
+  "https://png.pngtree.com/png-clipart/20230511/ourmid/pngtree-isolated-cat-on-white-background-png-image_7094927.png",
+  "https://www.shutterstock.com/image-photo/sitting-sweety-cat-looking-aside-600nw-2323092103.jpg"
+]
+
+
+
 const App = () => {
+    
   return (
     <View
       style={{
