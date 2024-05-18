@@ -5,7 +5,7 @@ import {Appearance} from 'react-native';
 const ThemeContext = createContext();
 
 const ThemeContextProvider = ({children}) => {
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState(Appearance.getColorScheme());
 
   useEffect(() => {
     const colorSchema = Appearance.getColorScheme();
