@@ -10,8 +10,7 @@ import CONSTANTS from '@utils/constants';
 import {getStyles} from './AdvertisementCard.style';
 
 // Custom components
-//import {Button} from '@components';
-import {Button} from 'react-native';
+import {Button} from '@components';
 
 // Uygulama genelindeki kullanıcıyı döndüren hook
 import {useUser} from '@context/UserProvider';
@@ -135,12 +134,20 @@ const BigCard = ({
       {/* Eğer kullanıcı ilanın sahibi ise düzenleme ve satılma durumunu değiştirme butonlarını göster*/}
       {isOwner && (
         <View style={styles.actionButtonsContainer}>
-          <Button title="İlanı Düzenle" onPress={handleUpdateButton} />
           <Button
-            title={isSold ? 'İlanı Aktifleştir' : 'Satıldı İşaretle'}
-            onPress={() => setIsSold(prev => !isSold)}
+            label="İlanı Düzenle"
+            onPress={handleUpdateButton}
+            additionalStyles={{container: {flex: 1}}}
           />
-          {/*Custom Component eklenecek*/}
+          <Button
+            label={isSold ? 'İlanı Aktifleştir' : 'Satıldı İşaretle'}
+            onPress={async () => {
+              const soldStatus = !isSold;
+              handleSoldStatus(id, {...advertisement, soldStatus});
+              setIsSold(soldStatus);
+            }}
+            additionalStyles={{container: {flex: 1}}}
+          />
         </View>
       )}
     </TouchableOpacity>

@@ -1,1 +1,16 @@
-// Absolute import/export ayarlamaları yapılacak
+export {default as AdvertisementDetail} from './AdvertisementDetail';
+export {default as UpdatePassword} from './Auth/Forgot/UpdatePassword';
+export {default as Forgot} from './Auth/Forgot';
+export {default as Login} from './Auth/Login';
+export {default as Register} from './Auth/Register';
+export {default as Chat} from './Chat';
+export {default as CreateAndUpdateAdvertisement} from './CreateAndUpdateAdvertisement';
+export {default as EmailValidation} from './EmailVerification';
+export {default as Home} from './Home';
+export {default as OwnerProfile} from './OwnerProfile';
+export {default as OwnFavoriteAdvertisements} from './OwnFavoriteAdvertisements';
+export {default as Advertisements} from './OwnFavoriteAdvertisements/Advertisement';
+export {default as ChangePassword} from './Profile/ChangePassword';
+export {default as Messages} from './Profile/Messages';
+export {default as ProfileEdit} from './Profile/ProfileEdit';
+export {default as Profile} from './Profile';

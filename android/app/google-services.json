@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248000992311",
+    "project_id": "second-seller-notification",
+    "storage_bucket": "second-seller-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248000992311:android:617dcda609373f65239bb2",
+        "android_client_info": {
+          "package_name": "com.secondseller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1U7ZWENuyXhoA1RBTyYYfC0beZs3Fe3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
