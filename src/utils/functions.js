@@ -1,14 +1,61 @@
-// Global fonksiyonlar burada bulunacak
+import ImageResizer from '@bam.tech/react-native-image-resizer';
+import {showMessage} from 'react-native-flash-message';
+import {getUser} from '../services/userServices';
+import Storage from './Storage';
 
-import { PermissionsAndroid, Linking } from 'react-native';
-
-
-
-const makePhoneCall = (phoneNumber) => {
-    Linking.openURL(`tel:${phoneNumber}`)
-  } 
-
-
-  export {
-    makePhoneCall
+const getStatusType = statusCode => {
+  if (statusCode >= 100 && statusCode < 200) {
+    return 'info';
+  } else if (statusCode >= 200 && statusCode < 300) {
+    return 'success';
+  } else if (statusCode >= 300 && statusCode < 400) {
+    return 'warning';
+  } else if (statusCode >= 400 && statusCode < 500) {
+    return 'danger';
+  } else if (statusCode >= 500 && statusCode < 600) {
+    return 'default';
+  } else {
+    return 'none';
+  }
 };
+
+const showFlashMessage = (statusCode, message) => {
+  const messageType = getStatusType(statusCode);
+  showMessage({
+    type: messageType,
+    message,
+  });
+};
+
+// Token'i decode ederek token'de saklanan kullanıcı
+// id'si ile kullanıcı verilerini döndürür.
+const getUserFromToken = async () => {
+  const token = await Storage.getData('token');
+  if (token) {
+    const decodedJWT = jwtDecode(token);
+    const userID = decodedJWT.userId;
+    // getUser token değeri ile kullanıcı verilerini response olarak döner
+    const response = await getUser(userID, token);
+    return {...response.data, token};
+  }
+  // Eğer token yok ise null döner
+  else {
+    return null;
+  }
+};
+
+// Resimleri yeniden boyutlandır
+const resizeImage = (asset, width, height) => {
+  return new Promise((resolve, reject) => {
+    ImageResizer.createResizedImage(asset.uri, width, height, 'JPEG', 100)
+      .then(response => {
+        resolve({name: response.name, uri: response.uri});
+      })
+      .catch(err => {
+        console.log('IMAGE_RESIZE_ERROR', err);
+        reject(null);
+      });
+  });
+};
+
+export {getUserFromToken, resizeImage, showFlashMessage};

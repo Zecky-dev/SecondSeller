@@ -1,27 +1,44 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 
-import {COLORS, CONSTANTS} from '@utils';
-import AppLogo from '@assets/images/app_icon.png';
+import {Button} from '@components';
 
-const Profile = () => {
+import {getStyles} from './Profile.style.js';
+import {CONSTANTS} from '@utils';
+import THEMECOLORS from '@utils/colors.js';
+
+import {useUser} from '@context/UserProvider.js';
+import {useTheme} from '@context/ThemeContext';
+
+const Profile = ({navigation}) => {
+  const {user, setUser} = useUser();
+  const {theme, setTheme} = useTheme();
+  const styles = getStyles(theme);
+  const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.LIGHT.white,
-      }}>
-      <Text
-        style={{
-          color: COLORS.LIGHT.black,
-          fontSize: CONSTANTS.fontSize.L6,
-          fontFamily: CONSTANTS.APP_FONT,
-        }}>
-        Profile
-      </Text>
-      <Image width={100} height={100} source={AppLogo} />
+    <View style={styles.container}>
+      <Button
+        onPress={() => navigation.navigate('ProfileEditScreen')}
+        icon={{
+          name: 'pencil',
+          color: COLORS.textColor,
+          size: CONSTANTS.fontSize.L5,
+        }}
+        label="Profil Düzenle"
+        additionalStyles={styles.profileButtonStyle}
+      />
+
+      <Button
+        onPress={() => navigation.navigate('MessagesScreen')}
+        icon={{
+          name: 'email-fast',
+          color: COLORS.textColor,
+          size: CONSTANTS.fontSize.L5,
+        }}
+        label="Sohbetlerim"
+        additionalStyles={styles.profileButtonStyle}
+      />
     </View>
   );
 };

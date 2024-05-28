@@ -378,7 +378,8 @@ const App = () => {
           barStyle={'light-content'}
         />
         <NavigationContainer linking={linking}>
-          {user ? <BottomTabs /> : <AuthStack />}
+          <BottomTabs />
+          {/*user ? <BottomTabs /> : <AuthStack />*/}
         </NavigationContainer>
       </View>
       <FlashMessage position={'top'} />

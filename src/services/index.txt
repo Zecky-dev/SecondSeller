@@ -1,1 +1,0 @@
-// Servis fonksiyonları bu klasör içerisine yazılacak
