@@ -3,12 +3,15 @@ import {Linking, StatusBar, View} from 'react-native';
 import {useIsFocused, CommonActions} from '@react-navigation/native';
 
 // Constants
-import {CONSTANTS, COLORS} from '@utils';
+import {CONSTANTS} from '@utils';
 import THEMECOLORS from '@utils/colors';
 
 // React Navigation
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabBar,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import messaging from '@react-native-firebase/messaging';
@@ -35,18 +38,22 @@ import {
   OwnerProfile,
 } from '@pages';
 
-// Components
-import {ChatHeader} from '@components';
-
 // Context
-import UserContextProvider, {useUser} from './context/UserProvider';
-import ThemeContextProvider, {useTheme} from './context/ThemeContext';
+import UserContextProvider, {useUser} from '@context/UserProvider';
+import ThemeContextProvider, {useTheme} from '@context/ThemeContext';
 
 // FlashMessage
 import FlashMessage from 'react-native-flash-message';
 
+// Storage
+import {getUserFromToken} from '@utils/functions';
+
 // Bootsplash
 import BootSplash from 'react-native-bootsplash';
+import {ChatHeader} from '@components';
+
+import {blockUser} from '@services/userServices';
+import {handleForegroundMessages} from '@services/firebaseNotificationServices';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -81,7 +88,7 @@ const linking = {
     });
 
     const foreground = messaging().onMessage(async remoteMessage => {
-      console.log(remoteMessage);
+      handleForegroundMessages(remoteMessage.notification);
     });
 
     // onNotificationOpenedApp: When the application is running, but in the background.
@@ -369,7 +376,24 @@ const AuthStack = () => {
 };
 
 const App = () => {
-  const {user} = useUser();
+  const {user, setUser} = useUser();
+  const {theme} = useTheme();
+  const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const userData = await getUserFromToken();
+      setUser(userData);
+    };
+    const init = async () => {
+      await checkToken();
+    };
+
+    init().finally(async () => {
+      await BootSplash.hide({fade: true});
+    });
+  }, []);
+
   return (
     <>
       <View style={{flex: 1}}>

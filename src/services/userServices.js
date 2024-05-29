@@ -25,13 +25,13 @@ const sendEmailVerification = async (values, type) => {
       return {
         status: 'Network Error',
         message:
-          'The request was made but no response was received. Please check your network connection.',
+          'Talep yapıldı ancak yanıt alınamadı. Lütfen ağ bağlantınızı kontrol edin.',
       };
     } else {
       return {
         status: 'Error',
         message:
-          'An error occurred while processing your request. Please try again.',
+          'İstek gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.',
       };
     }
   }
@@ -59,16 +59,69 @@ const updateUser = async (userID, values) => {
       return {
         status: 'Network Error',
         message:
-          'The request was made but no response was received. Please check your network connection.',
+          'Talep yapıldı ancak yanıt alınamadı. Lütfen ağ bağlantınızı kontrol edin.',
       };
     } else {
       return {
         status: 'Error',
         message:
-          'An error occurred while processing your request. Please try again.',
+          'İstek gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.',
       };
     }
   }
 };
 
-export {sendEmailVerification, updateUser};
+const blockUser = async (from, userID) => {
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/user/block?from=${from}&id=${userID}`,
+    );
+    return {
+      status: response.status,
+      message: response.data.messsage,
+      data: response.data.data,
+    };
+  } catch (err) {
+    return {
+      status: 'error',
+      message: 'Kullanıcı engellenirken bir hata oluştu.',
+      error: err.response.data,
+    };
+  }
+};
+
+// Şifre güncelleme servis fonksiyonu
+const changePassword = async (userID, values) => {
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/user/${userID}/changePassword`,
+      values,
+    );
+    return {
+      status: response.status,
+      message: response.data.message,
+      data: response.data.data,
+    };
+  } catch (err) {
+    if (err.response) {
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
+    } else if (err.request) {
+      return {
+        status: 'Network Error',
+        message:
+          'Talep yapıldı ancak yanıt alınamadı. Lütfen ağ bağlantınızı kontrol edin.',
+      };
+    } else {
+      return {
+        status: 'Error',
+        message:
+          'İstek gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.',
+      };
+    }
+  }
+};
+
+export {sendEmailVerification, updateUser, blockUser, changePassword};

@@ -6,7 +6,7 @@ import {getStyles} from './ProfileEdit.style';
 import {useUser} from '@context/UserProvider';
 import {useTheme} from '@context/ThemeContext';
 
-import {UpdateProfileSchema} from '@utils/valifationSchemas';
+import {UpdateProfileSchema} from '@utils/validationSchemas';
 import {Formik} from 'formik';
 import {Animation, Button, Input} from '@components';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -131,12 +131,11 @@ const ProfilEdit = ({navigation}) => {
       <ScrollView style={styles.container}>
         <Formik
           initialValues={{
-            nameSurname: user.nameSurname,
-            emailAddress: user.emailAddress,
-            phoneNumber: user.phoneNumber,
-            imageURL: user.imageURL
-              ? user.imageURL
-              : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+            nameSurname: 'alper',
+            emailAddress: 'mail@mail.com',
+            phoneNumber: '05050505050',
+            imageURL:
+              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
           }}
           onSubmit={values => handleUpdate(values)}
           validationSchema={UpdateProfileSchema}>
@@ -162,8 +161,6 @@ const ProfilEdit = ({navigation}) => {
               <Input
                 label={'Ad Soyad'}
                 onChangeText={handleChange('nameSurname')}
-                value={values.nameSurname}
-                placeholder={user.nameSurname}
                 errors={
                   touched.nameSurname &&
                   errors.nameSurname &&
@@ -173,9 +170,7 @@ const ProfilEdit = ({navigation}) => {
               <Input
                 label={'E-posta Adresi'}
                 onChangeText={handleChange('emailAddress')}
-                value={values.emailAddress}
                 keyboardType="email-address"
-                placeholder={user.emailAddress}
                 errors={
                   touched.emailAddress &&
                   errors.emailAddress &&
@@ -185,14 +180,12 @@ const ProfilEdit = ({navigation}) => {
               <Input
                 label={'Telefon Numarası'}
                 onChangeText={handleChange('phoneNumber')}
-                value={values.phoneNumber}
                 keyboardType="number-pad"
                 errors={
                   touched.phoneNumber &&
                   errors.phoneNumber &&
                   errors.phoneNumber
                 }
-                placeholder={user.phoneNumber}
               />
               <Button
                 onPress={() => navigation.navigate('ChangePasswordScreen')}
