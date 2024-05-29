@@ -131,11 +131,12 @@ const ProfilEdit = ({navigation}) => {
       <ScrollView style={styles.container}>
         <Formik
           initialValues={{
-            nameSurname: 'alper',
-            emailAddress: 'mail@mail.com',
-            phoneNumber: '05050505050',
-            imageURL:
-              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+            nameSurname: user.nameSurname,
+            emailAddress: user.emailAddress,
+            phoneNumber: user.phoneNumber,
+            imageURL: user.imageURL
+              ? user.imageURL
+              : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
           }}
           onSubmit={values => handleUpdate(values)}
           validationSchema={UpdateProfileSchema}>
@@ -166,6 +167,8 @@ const ProfilEdit = ({navigation}) => {
                   errors.nameSurname &&
                   errors.nameSurname
                 }
+                value={user.nameSurname}
+                placeholder={user.nameSurname}
               />
               <Input
                 label={'E-posta Adresi'}
@@ -176,6 +179,8 @@ const ProfilEdit = ({navigation}) => {
                   errors.emailAddress &&
                   errors.emailAddress
                 }
+                value={user.emailAddress}
+                placeholder={user.emailAddress}
               />
               <Input
                 label={'Telefon Numarası'}
@@ -186,6 +191,8 @@ const ProfilEdit = ({navigation}) => {
                   errors.phoneNumber &&
                   errors.phoneNumber
                 }
+                value={user.phoneNumber}
+                placeholder={user.phoneNumber}
               />
               <Button
                 onPress={() => navigation.navigate('ChangePasswordScreen')}

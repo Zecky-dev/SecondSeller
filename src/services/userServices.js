@@ -2,6 +2,28 @@ import axios from 'axios';
 
 import {BASE_URL} from '@env';
 
+// ID'ye göre kullanıcı getirme servis fonksiyonu
+const getUser = async (userID, token) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/user/${userID}`, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+    return {
+      status: 'success',
+      message: 'User fetched successfully',
+      data: response.data.data,
+    };
+  } catch (err) {
+    return {
+      status: 'error',
+      message: 'An error occurred while processing your request.',
+      error: err.message,
+    };
+  }
+};
+
 // E-mail doğrulaması atan servis fonksiyonu
 const sendEmailVerification = async (values, type) => {
   const {emailAddress, phoneNumber} = values;
@@ -124,4 +146,4 @@ const changePassword = async (userID, values) => {
   }
 };
 
-export {sendEmailVerification, updateUser, blockUser, changePassword};
+export {sendEmailVerification, updateUser, blockUser, changePassword, getUser};
