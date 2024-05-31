@@ -190,13 +190,12 @@ const changePassword = async (userID, values) => {
   }
 };
 
-const getSenderReceiverData = async (senderID, receiverID, token) => {
-  const senderData = await getUser(senderID, token);
-  const receiverData = await getUser(receiverID, token);
-  return {
-    sender: senderData.data,
-    receiver: receiverData.data,
-  };
+export {
+  getSenderReceiverData,
+  login,
+  getUser,
+  blockUser,
+  changePassword,
+  sendEmailVerification,
+  updateUser,
 };
-
-export {getSenderReceiverData, login, getUser};
