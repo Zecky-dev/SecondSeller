@@ -156,6 +156,39 @@ const blockUser = async (from, userID) => {
   }
 };
 
+// Yeni şifreyle güncelleme servis fonksiyonu
+const updatePassword = async (emailAddress, newPassword) => {
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/user/updatePassword`,
+      { newPassword, emailAddress },
+    );
+    return {
+      status: response.status,
+      message: response.data.message,
+    };
+  } catch (err) {
+    if (err.response) {
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
+    } else if (err.request) {
+      return {
+        status: 'Network Error',
+        message:
+          'The request was made but no response was received. Please check your network connection.',
+      };
+    } else {
+      return {
+        status: 'Error',
+        message:
+          'An error occurred while processing your request. Please try again.',
+      };
+    }
+  }
+};
+
 // Şifre güncelleme servis fonksiyonu
 const changePassword = async (userID, values) => {
   try {
@@ -198,4 +231,5 @@ export {
   changePassword,
   sendEmailVerification,
   updateUser,
+  updatePassword
 };
