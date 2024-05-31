@@ -1,29 +1,108 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useState} from 'react';
+import {View, ScrollView, Image, Text} from 'react-native';
+import {Button, Input, Animation} from '@components';
 
-import {COLORS, CONSTANTS} from '@utils';
-import AppLogo from '@assets/images/app_icon.png';
+import {getStyles} from './EmailVerification.style';
 
-const EmailVerification = () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.LIGHT.white,
-      }}>
-      <Text
-        style={{
-          color: COLORS.LIGHT.black,
-          fontSize: CONSTANTS.fontSize.L6,
-          fontFamily: CONSTANTS.APP_FONT,
-        }}>
-        EmailVerification
-      </Text>
-      <Image width={100} height={100} source={AppLogo} />
-    </View>
+import {register, updateUser} from '@services/userServices';
+import {useUser} from '@context/UserProvider';
+import {useTheme} from '@context/ThemeContext';
+import {getUserFromToken, showFlashMessage} from '@utils/functions';
+import Storage from '@utils/Storage';
+
+import EmailValidationDarkVector from '@assets/images/email_validation_dark.png';
+import EmailValidationLightVector from '@assets/images/email_validation_light.png';
+
+const EmailVerification = ({navigation, route}) => {
+  const [verificationCode, setVerificationCode] = useState(
+    route.params.verificationCode,
   );
+  const [loading, setLoading] = useState(false);
+  const {setUser} = useUser();
+  const {theme} = useTheme();
+  const styles = getStyles(theme);
+
+  const EmailValidationVector =
+    theme === 'dark' ? EmailValidationDarkVector : EmailValidationLightVector;
+
+  const {verificationCode: code, user, type} = route.params;
+
+  // Kullanıcı kayıt işlemi sırasında mail kodunu kontrol eder sonra kullanıcıyı kaydeder
+  const checkAndRegister = async () => {
+    if (verificationCode === code) {
+      setLoading(true);
+      const response = await register(user);
+      if (response.status.toString().startsWith('2')) {
+        await Storage.storeData('token', response.data);
+        const user = await getUserFromToken();
+        setUser(user);
+      } else {
+        showFlashMessage(response.status, response.message);
+      }
+      setLoading(false);
+    }
+  };
+
+  // Kullanıcı eposta veya telefon numarasını güncellemek isterse önce mail kodunu kontrol eder sonra bilgileri günceller
+  const checkAndUpdate = async () => {
+    if (verificationCode === code) {
+      setLoading(true);
+      const response = await updateUser(user.id, user.values);
+      if (response.status.toString().startsWith('2')) {
+        const user = await getUserFromToken();
+        setUser(user);
+        navigation.replace('ProfileStackScreen');
+      } else {
+        showFlashMessage(response.status, response.message);
+      }
+      setLoading(false);
+    }
+  };
+
+  const checkAndUpdatePassword = () => {
+    if (Number(verificationCode) == code) {
+      navigation.navigate('UpdatePasswordScreen', {
+        emailAddress: user.emailAddress,
+      });
+    }
+  };
+
+  if (loading) {
+    return <Animation animationName={'loading'} />;
+  } else {
+    return (
+      <ScrollView contentContainerStyle={styles.container}>
+        <Image source={EmailValidationVector} style={styles.image} />
+
+        <View style={styles.textContainer}>
+          <Text style={styles.infoMessage}>
+            E-posta adresinize 6 haneli doğrulama kodu gönderildi.
+          </Text>
+          <Text style={styles.infoMessage}>Lütfen boşluğa giriniz.</Text>
+        </View>
+
+        <Input
+          placeholder="Doğrulama Kodu"
+          onChangeText={val => {
+            let numberValue = val.replace(/[^0-9]/g, '');
+            setVerificationCode(numberValue);
+          }}
+          keyboardType="number-pad"
+          maxLength={6}
+        />
+        <Button
+          onPress={() =>
+            type == 'register'
+              ? checkAndRegister()
+              : 'forgotPassword'
+              ? checkAndUpdatePassword()
+              : checkAndUpdate()
+          }
+          label="Doğrula"
+        />
+      </ScrollView>
+    );
+  }
 };
 
 export default EmailVerification;
