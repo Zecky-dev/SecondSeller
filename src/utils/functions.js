@@ -2,6 +2,8 @@ import ImageResizer from '@bam.tech/react-native-image-resizer';
 import {showMessage} from 'react-native-flash-message';
 import {getUser} from '../services/userServices';
 import Storage from './Storage';
+import {PermissionsAndroid, Linking} from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 
 const getStatusType = statusCode => {
   if (statusCode >= 100 && statusCode < 200) {
@@ -58,4 +60,36 @@ const resizeImage = (asset, width, height) => {
   });
 };
 
-export {getUserFromToken, resizeImage, showFlashMessage};
+const locationPermissionGranted = async () => {
+  const granted = await PermissionsAndroid.check(
+    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+  );
+  if (!granted) {
+    const permissionRequestResult = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+    return permissionRequestResult === 'granted';
+  }
+  return true;
+};
+
+// Anlık konum almaak için bir promise döndürür
+const getCurrentLocation = () => {
+  return new Promise((resolve, reject) => {
+    Geolocation.getCurrentPosition(
+      position => {
+        const {longitude, latitude} = position.coords;
+        resolve({longitude, latitude});
+      },
+      error => {
+        showMessage({
+          message: `${error.code} : ${error.message}`,
+        });
+        reject(null);
+      },
+    );
+  });
+};
+
+
+export {getUserFromToken, resizeImage, showFlashMessage, getCurrentLocation, locationPermissionGranted};
