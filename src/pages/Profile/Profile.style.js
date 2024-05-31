@@ -34,5 +34,24 @@ export const getStyles = theme => {
         fontSize: CONSTANTS.fontSize.L4,
       },
     },
+    switch: {
+      backgroundColor: 'transparent',
+      paddingHorizontal: CONSTANTS.padding.L5,
+      paddingVertical: CONSTANTS.padding.L2,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: CONSTANTS.margin.L2,
+      borderRadius: CONSTANTS.borderRadius.L1,
+      borderWidth: CONSTANTS.borderWidth.thin,
+      borderColor: COLORS.borderColor,
+      width: '90%',
+    },
+    switchLabel: {
+      textAlign: 'center',
+      color: COLORS.textColor,
+      fontSize: CONSTANTS.fontSize.L4,
+      marginHorizontal: CONSTANTS.margin.L1,
+    },
   });
 };

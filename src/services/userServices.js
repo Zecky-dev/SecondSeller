@@ -2,6 +2,41 @@ import axios from 'axios';
 
 import {BASE_URL} from '@env';
 
+// Giriş servis fonksiyonu
+const login = async values => {
+  try {
+    const {emailAddress, password} = values;
+    const response = await axios.post(`${BASE_URL}/user/login`, {
+      emailAddress,
+      password,
+    });
+    return {
+      status: response.status,
+      message: response.data.message,
+      data: response.data.token,
+    };
+  } catch (err) {
+    if (err.response) {
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
+    } else if (err.request) {
+      return {
+        status: 'Network Error',
+        message:
+          'The request was made but no response was received. Please check your network connection.',
+      };
+    } else {
+      return {
+        status: 'Error',
+        message:
+          'An error occurred while processing your request. Please try again.',
+      };
+    }
+  }
+};
+
 // ID'ye göre kullanıcı getirme servis fonksiyonu
 const getUser = async (userID, token) => {
   try {
@@ -22,6 +57,15 @@ const getUser = async (userID, token) => {
       error: err.message,
     };
   }
+};
+
+const getSenderReceiverData = async (senderID, receiverID, token) => {
+  const senderData = await getUser(senderID, token);
+  const receiverData = await getUser(receiverID, token);
+  return {
+    sender: senderData.data,
+    receiver: receiverData.data,
+  };
 };
 
 // E-mail doğrulaması atan servis fonksiyonu
@@ -155,11 +199,4 @@ const getSenderReceiverData = async (senderID, receiverID, token) => {
   };
 };
 
-export {
-  sendEmailVerification,
-  updateUser,
-  blockUser,
-  changePassword,
-  getUser,
-  getSenderReceiverData,
-};
+export {getSenderReceiverData, login, getUser};
