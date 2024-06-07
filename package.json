@@ -22,6 +22,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "formik": "^2.4.5",
     "lottie-react-native": "^6.7.2",
     "moment": "^2.30.1",

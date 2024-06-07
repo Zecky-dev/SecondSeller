@@ -24,7 +24,7 @@ import {getSenderReceiverData} from '@services/userServices';
 // Context
 import {useTheme} from '@context/ThemeContext';
 import {useUser} from '@context/UserProvider';
-import FastMessageChips from './FastMessageChips/FastMessageChips';
+import FastMessageChips from './components/FastMessageChips';
 import {CONSTANTS} from '@utils';
 import {showFlashMessage} from '@utils/functions';
 

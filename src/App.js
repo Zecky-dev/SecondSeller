@@ -8,10 +8,7 @@ import THEMECOLORS from '@utils/colors';
 
 // React Navigation
 import {NavigationContainer} from '@react-navigation/native';
-import {
-  BottomTabBar,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import messaging from '@react-native-firebase/messaging';
@@ -39,20 +36,20 @@ import {
 } from '@pages';
 
 // Context
-import UserContextProvider, {useUser} from '@context/UserProvider';
-import ThemeContextProvider, {useTheme} from '@context/ThemeContext';
+import UserContextProvider, {useUser} from './context/UserProvider';
+import ThemeContextProvider, {useTheme} from './context/ThemeContext';
 
 // FlashMessage
 import FlashMessage from 'react-native-flash-message';
 
 // Storage
-import {getUserFromToken} from '@utils/functions';
+import {getUserFromToken, makePhoneCall} from '@utils/functions';
 
 // Bootsplash
 import BootSplash from 'react-native-bootsplash';
 import {ChatHeader} from '@components';
 
-import {blockUser} from '@services/userServices';
+import {blockUser} from './services/userServices';
 import {handleForegroundMessages} from '@services/firebaseNotificationServices';
 
 const Tab = createBottomTabNavigator();
@@ -402,8 +399,7 @@ const App = () => {
           barStyle={'light-content'}
         />
         <NavigationContainer linking={linking}>
-          <BottomTabs />
-          {/*user ? <BottomTabs /> : <AuthStack />*/}
+          {user ? <BottomTabs /> : <AuthStack />}
         </NavigationContainer>
       </View>
       <FlashMessage position={'top'} />

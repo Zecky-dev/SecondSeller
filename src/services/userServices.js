@@ -197,10 +197,10 @@ const blockUser = async (from, userID) => {
 // Yeni şifreyle güncelleme servis fonksiyonu
 const updatePassword = async (emailAddress, newPassword) => {
   try {
-    const response = await axios.put(
-      `${BASE_URL}/user/updatePassword`,
-      { newPassword, emailAddress },
-    );
+    const response = await axios.put(`${BASE_URL}/user/updatePassword`, {
+      newPassword,
+      emailAddress,
+    });
     return {
       status: response.status,
       message: response.data.message,
@@ -270,5 +270,5 @@ export {
   sendEmailVerification,
   updateUser,
   updatePassword,
-  register
+  register,
 };
