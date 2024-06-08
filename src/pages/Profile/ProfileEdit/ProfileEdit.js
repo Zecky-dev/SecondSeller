@@ -78,10 +78,7 @@ const ProfilEdit = ({navigation}) => {
 
   // Kullanıcı bilgilerini güncelleme
   const handleUpdate = async newUser => {
-    setLoading(true);
     let type = '';
-
-    // phoneNumber veya emailAddress güncellendi mi kontrolü
     if (
       user.emailAddress !== newUser.emailAddress &&
       user.phoneNumber !== newUser.phoneNumber
@@ -99,8 +96,7 @@ const ProfilEdit = ({navigation}) => {
       const imageURL = (await uploadImagesAndGetURLs(images))[0];
       newUser.imageURL = imageURL;
     }
-
-    // Eğer phoneNumber veya emailAddress güncellenmiş ise yeni değerler sistemde var mı kontorlü yap
+    
     if (type) {
       const response = await sendEmailVerification(newUser, type);
       if (response.status.toString().startsWith('2')) {
@@ -114,7 +110,9 @@ const ProfilEdit = ({navigation}) => {
         });
       }
       showFlashMessage(response.status, response.message);
-    } else {
+    } 
+    
+    else {
       const response = await updateUser(user._id, newUser);
       showFlashMessage(response.status, response.message);
       if (response.status.toString().startsWith('2')) {
@@ -123,7 +121,7 @@ const ProfilEdit = ({navigation}) => {
         navigation.navigate('ProfileStackScreen');
       }
     }
-    setLoading(false);
+    
   };
 
   if (!loading) {
@@ -167,7 +165,7 @@ const ProfilEdit = ({navigation}) => {
                   errors.nameSurname &&
                   errors.nameSurname
                 }
-                value={user.nameSurname}
+                value={values.nameSurname}
                 placeholder={user.nameSurname}
               />
               <Input
@@ -179,7 +177,7 @@ const ProfilEdit = ({navigation}) => {
                   errors.emailAddress &&
                   errors.emailAddress
                 }
-                value={user.emailAddress}
+                value={values.emailAddress}
                 placeholder={user.emailAddress}
               />
               <Input
@@ -191,7 +189,7 @@ const ProfilEdit = ({navigation}) => {
                   errors.phoneNumber &&
                   errors.phoneNumber
                 }
-                value={user.phoneNumber}
+                value={values.phoneNumber}
                 placeholder={user.phoneNumber}
               />
               <Button

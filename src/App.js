@@ -20,7 +20,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   Profile,
   Home,
-  Advertisements,
   CreateAndUpdateAdvertisement,
   Login,
   Register,
@@ -32,7 +31,8 @@ import {
   Messages,
   Chat,
   UpdatePassword,
-  OwnerProfile
+  OwnerProfile,
+  OwnFavoriteAdvertisements
 } from '@pages';
 
 // Context
@@ -250,7 +250,7 @@ const AdvertisementStack = ({navigation}) => {
   };
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen component={Advertisements} name="Advertisements" />
+      <Stack.Screen component={OwnFavoriteAdvertisements} name="Advertisements" />
       <Stack.Screen
         component={AdvertisementDetail}
         name="OwnAdvertisementDetailScreen"

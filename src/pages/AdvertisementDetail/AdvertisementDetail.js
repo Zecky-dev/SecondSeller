@@ -81,7 +81,6 @@ const AdvertisementDetail = ({route, navigation}) => {
       const response = await getUser(id, token);
       return response.data;
     } catch (err) {
-      console.log(err)
       showMessage({
         message: 'İlan sahibi getirilirken bir hata meydana geldi!',
         type: 'danger',
@@ -150,7 +149,6 @@ const AdvertisementDetail = ({route, navigation}) => {
       description,
       images,
       owner,
-      category,
       location,
       price,
     } = advertisement;
@@ -160,16 +158,18 @@ const AdvertisementDetail = ({route, navigation}) => {
     const LATITUDE_DELTA = 0.03;
     const LONGITUDE_DELTA = LATITUDE_DELTA * (width / height);
 
+  
     return (
       <View style={styles.outerContainer}>
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
-          {/* Slider */}
+         
           <Slider
             images={images}
             onPress={() => setFullScreenImageModalVisible(true)}
           />
 
-          {/* İlan sahibi ile ilgili bilgiler */}
+          
+       
           <Pressable
             style={styles.ownerContainer}
             onPress={() => {
@@ -197,18 +197,18 @@ const AdvertisementDetail = ({route, navigation}) => {
             </Text>
           </Pressable>
 
-          {/* Slider Altındaki Açıklamalar */}
           <View style={styles.namePriceContainer}>
             <Text style={styles.name}>{title}</Text>
             <Text style={styles.price}>{price} TL</Text>
           </View>
 
-          {/* İlan açıklaması */}
+            
+
           <View style={styles.descriptionContainer}>
             <Text style={styles.description}>{description}</Text>
           </View>
 
-          {/* İlan Konumunun Görüntülenmesi */}
+          
 
           <MapView
             initialRegion={{
@@ -241,6 +241,8 @@ const AdvertisementDetail = ({route, navigation}) => {
             />
           </MapView>
 
+          
+
           {owner !== userID && (
             <View style={{flexDirection: 'row'}}>
               <Button
@@ -248,33 +250,35 @@ const AdvertisementDetail = ({route, navigation}) => {
                   name: 'chat',
                   color: COLORS.titleColor,
                   size: 24,
-                }}
-                label="Sohbet Başlat"
-                additionalStyles={{
-                  container: {
-                    flex: 1,
-                  },
-                }}
-                onPress={async () =>
-                  await startChat(null, owner, advertisementID, title)
-                }
-              />
+                  }}
+                  label="Sohbet Başlat"
+                  additionalStyles={{
+                    container: {
+                      flex: 1,
+                      },
+                      }}
+                      onPress={async () =>
+                        await startChat(null, owner, advertisementID, title)
+                        }
+                        />
               <Button
                 icon={{
                   name: 'offer',
                   color: COLORS.titleColor,
                   size: 24,
-                }}
-                additionalStyles={{
-                  container: {
-                    flex: 1,
-                  },
-                }}
-                label="Teklif Ver"
+                  }}
+                  additionalStyles={{
+                    container: {
+                      flex: 1,
+                      },
+                      }}
+                      label="Teklif Ver"
                 onPress={() => setOfferModalVisible(true)}
               />
             </View>
           )}
+
+          
 
           {owner === userID && (
             <Button
@@ -303,7 +307,11 @@ const AdvertisementDetail = ({route, navigation}) => {
               }}
             />
           )}
+          
+          
         </ScrollView>
+
+        
         <OfferModal
           isVisible={offerModalVisible}
           setVisible={setOfferModalVisible}
@@ -315,6 +323,7 @@ const AdvertisementDetail = ({route, navigation}) => {
           setVisible={setFullScreenImageModalVisible}
           images={images}
         />
+      
       </View>
     );
   } else {

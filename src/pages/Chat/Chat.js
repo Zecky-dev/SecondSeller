@@ -1,7 +1,9 @@
 // React & Components
 import React, {useEffect, useState, useRef} from 'react';
 import {View, FlatList} from 'react-native';
-import {ChatBubble, ChatInput, EmptyList, Animation} from '@components';
+import {ChatBubble, EmptyList, Animation} from '@components';
+import FastMessageChips from './components/FastMessageChips/FastMessageChips'
+import ChatInput from './components/ChatInput';
 
 // Styles
 import {getStyles} from './Chat.style';
@@ -24,7 +26,6 @@ import {getSenderReceiverData} from '@services/userServices';
 // Context
 import {useTheme} from '@context/ThemeContext';
 import {useUser} from '@context/UserProvider';
-import FastMessageChips from './components/FastMessageChips/FastMessageChips'
 import {CONSTANTS} from '@utils';
 import {showFlashMessage} from '@utils/functions';
 
@@ -58,7 +59,6 @@ const Chat = ({navigation, route}) => {
         .doc(chatRoomID)
         .onSnapshot(documentSnapshot => {
           const data = documentSnapshot.data();
-
           // Eğer oda silinirse chat ekranındaki kullanıcı HomeScreen'e gönderilir
           // isAdvertisementOwner ilan sahibinin bildirim ve yönlendirmeden etkilenmemesi için
           if (data == undefined && !isAdvertisementOwner) {
@@ -102,10 +102,14 @@ const Chat = ({navigation, route}) => {
     await removeMessageService(roomData.roomID, messageDetails);
   };
 
+
+
   // Render
   if (roomData === null || userDatas.length === 0) {
     return <Animation animationName={'loading'} />;
   } else {
+  
+    
     return (
       <View style={styles.container}>
         {roomData.messages.length === 0 ? (
@@ -114,6 +118,7 @@ const Chat = ({navigation, route}) => {
             vector={NoMessageVector}
           />
         ) : (
+          
           <FlatList
             data={roomData.messages}
             contentContainerStyle={styles.chatListContainer}
@@ -134,7 +139,8 @@ const Chat = ({navigation, route}) => {
             }}
           />
         )}
-        {/* isAdvertisementOwner'a göre FastMessageChips içeriği değişmektedir */}
+
+        
         <FastMessageChips
           messages={
             isAdvertisementOwner
@@ -143,6 +149,9 @@ const Chat = ({navigation, route}) => {
           }
           onPress={chipContent => setMessage(chipContent)}
         />
+
+
+
         <ChatInput
           sendMessage={sendMessage}
           senderID={senderID}
@@ -150,6 +159,7 @@ const Chat = ({navigation, route}) => {
           theme={theme}
           message={message}
         />
+
       </View>
     );
   }

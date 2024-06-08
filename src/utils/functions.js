@@ -104,5 +104,10 @@ const getCurrentLocation = () => {
   });
 };
 
+const makePhoneCall = phoneNumber => {
+  Linking.openURL(`tel:${phoneNumber}`);
+};
 
-export {getUserFromToken, resizeImage, showFlashMessage, getCurrentLocation, locationPermissionGranted};
+
+
+export {getUserFromToken, resizeImage, showFlashMessage, getCurrentLocation, locationPermissionGranted, makePhoneCall};

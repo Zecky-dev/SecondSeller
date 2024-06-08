@@ -42,9 +42,13 @@ const LittleCard = ({
   // Kalp icon'una basılınca ilan favorilere eklenecek veya favorilerden kaldırılacak,
   // local de bulunan user'ın favorites değeri güncellenecek
   const getLastFavorites = async () => {
-    // Backend fonksiyonu ve state düzenlemeleri eklenecek
-
-    setLiked(prev => !prev);
+    const updatedFavorites = await favoriteUnfavorite(
+      user._id,
+      advertisement._id,
+    );
+    const newFavorites = updatedFavorites.data;
+    setUser({...user, favorites: newFavorites});
+    setLiked(newFavorites.includes(advertisement._id));
   };
 
   return (
@@ -103,9 +107,13 @@ const BigCard = ({
   const [isSold, setIsSold] = useState(soldStatus);
 
   const getLastFavorites = async () => {
-    // Backend fonksiyonu ve state düzenlemeleri eklenecek
-
-    setLiked(prev => !prev);
+    const updatedFavorites = await favoriteUnfavorite(
+      user._id,
+      advertisement._id,
+    );
+    const newFavorites = updatedFavorites.data;
+    setUser({...user, favorites: newFavorites});
+    setLiked(newFavorites.includes(advertisement._id));
   };
 
   return (
@@ -159,7 +167,7 @@ const AdvertisementCard = ({
   onPress,
   isOwner,
   big = false,
-  favoriteUnfavorite, // Favori durumunu güncelleyecek fonksiyon, backend kısmında dahil edilecek
+  favoriteUnfavorite,
   handleSoldStatus,
   handleUpdateButton,
 }) => {

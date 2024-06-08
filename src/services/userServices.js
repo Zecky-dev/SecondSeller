@@ -89,6 +89,7 @@ const getUser = async (userID, token) => {
       data: response.data.data,
     };
   } catch (err) {
+    console.log("ERROR_USER",err)
     return {
       status: 'error',
       message: 'An error occurred while processing your request.',
@@ -120,7 +121,6 @@ const sendEmailVerification = async (values, type) => {
       data: response.data.data,
     };
   } catch (err) {
-    console.log(err)
     if (err.response) {
       return {
         status: err.response.status,
@@ -198,10 +198,10 @@ const blockUser = async (from, userID) => {
 // Yeni şifreyle güncelleme servis fonksiyonu
 const updatePassword = async (emailAddress, newPassword) => {
   try {
-    const response = await axios.put(
-      `${BASE_URL}/user/updatePassword`,
-      { newPassword, emailAddress },
-    );
+    const response = await axios.put(`${BASE_URL}/user/updatePassword`, {
+      newPassword,
+      emailAddress,
+    });
     return {
       status: response.status,
       message: response.data.message,
@@ -296,6 +296,27 @@ const changePassword = async (userID, values) => {
   }
 };
 
+const favoriteUnFavorite = async (userID, advertisementID) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/user/favoriteUnfavorite`, {
+      userID,
+      advertisementID,
+    });
+    return {
+      status: response.status,
+      message: response.data.message,
+      data: response.data.data,
+    };
+  } catch (err) {
+    return {
+      status: 'error',
+      message: 'An error occurred while like/dislike.',
+      error: err.response.data,
+    };
+  }
+};
+
+
 export {
   getSenderReceiverData,
   login,
@@ -306,5 +327,6 @@ export {
   updateUser,
   updatePassword,
   register,
-  passwordReset
+  passwordReset,
+  favoriteUnFavorite
 };

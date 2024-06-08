@@ -27,12 +27,12 @@ const ChangePassword = ({navigation}) => {
         validationSchema={ChangePasswordSchema}
         onSubmit={async values => {
           const response = await changePassword(user._id, values);
-          const token = response.data;
-          showFlashMessage(response.status, response.message);
-          if (token) {
+          if (String(response.status).startsWith('2')) {
+            const token = response.data;
             await Storage.storeData('token', token);
             navigation.goBack();
           }
+          showFlashMessage(response.status, response.message);
         }}>
         {({handleSubmit, handleChange, values, errors, touched}) => (
           <>

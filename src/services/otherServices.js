@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {IMGBB_API_KEY as apiKey} from '@env';
 import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
+import { v4 } from 'uuid'
 
 const uploadImagesAndGetURLs = async imagesURIsToUpload => {
   const apiUrl = 'https://api.imgbb.com/1/upload';
@@ -14,7 +14,7 @@ const uploadImagesAndGetURLs = async imagesURIsToUpload => {
       for (let image of imagesURIsToUpload) {
         formData.append('image', {
           uri: image,
-          name: uuidv4(),
+          name: v4(),
           type: 'image/png',
         });
         response = await axios.post(apiUrl, formData, {
