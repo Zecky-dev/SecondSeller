@@ -1,29 +1,69 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {FlatList} from 'react-native';
+import {AdvertisementCard, EmptyList} from '@components';
 
-import {COLORS, CONSTANTS} from '@utils';
-import AppLogo from '@assets/images/app_icon.png';
+// Favorite unfavorite servis fonksiyonu
+import {favoriteUnFavorite} from '@services/userServices';
+import {updateAdvertisementAPI} from '@services/advertisementServices';
 
-const Advertisements = () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.LIGHT.white,
-      }}>
-      <Text
-        style={{
-          color: COLORS.LIGHT.black,
-          fontSize: CONSTANTS.fontSize.L6,
-          fontFamily: CONSTANTS.APP_FONT,
-        }}>
-        Advertisements
-      </Text>
-      <Image width={100} height={100} source={AppLogo} />
-    </View>
-  );
+// Uygulama genelindeki kullanıcıyı döndüren hook
+import {useUser} from '@context/UserProvider';
+import {useNavigation} from '@react-navigation/native';
+import {showFlashMessage} from '@utils/functions';
+
+import THEMECOLORS from '@utils/colors';
+import {useTheme} from '@context/ThemeContext';
+
+import EmptyListDarkVector from '@assets/images/empty_list_dark.png';
+import EmptyListLightVector from '@assets/images/empty_list_light.png';
+
+const Advertisements = ({advertisements}) => {
+  const {
+    user: {_id: id, token},
+  } = useUser();
+  const {theme} = useTheme();
+  const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
+  const EmptyListVector =
+    theme === 'dark' ? EmptyListDarkVector : EmptyListLightVector;
+
+  const navigation = useNavigation();
+
+  const handleSoldStatus = async (id, values) => {
+    const response = await updateAdvertisementAPI(id, values, token);
+    showFlashMessage(response.status, response.data.message);
+  };
+
+  if (advertisements.length === 0) {
+    return <EmptyList label={'İlan listesi boş!'} vector={EmptyListVector} />;
+  } else {
+    return (
+      <FlatList
+        data={advertisements}
+        style={{backgroundColor: COLORS.pageBackground}}
+        keyExtractor={item => item._id}
+        renderItem={({item}) => (
+          <AdvertisementCard
+            advertisement={item}
+            isOwner={id === item.owner}
+            favoriteUnfavorite={favoriteUnFavorite}
+            big={true}
+            onPress={() => {
+              navigation.navigate('OwnAdvertisementDetailScreen', {
+                id: item._id,
+              });
+            }}
+            handleSoldStatus={handleSoldStatus}
+            handleUpdateButton={() => {
+              navigation.navigate('UpdateAdvertisementScreen', {
+                advertisement: item,
+                isOwnStack: true,
+              });
+            }}
+          />
+        )}
+      />
+    );
+  }
 };
 
 export default Advertisements;

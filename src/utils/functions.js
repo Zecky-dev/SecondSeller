@@ -1,9 +1,10 @@
-import ImageResizer from '@bam.tech/react-native-image-resizer';
-import {showMessage} from 'react-native-flash-message';
-import {getUser} from '../services/userServices';
-import Storage from './Storage';
 import {PermissionsAndroid, Linking} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
+import {showMessage} from 'react-native-flash-message';
+import {Buffer} from 'buffer';
+import {getUser} from '../services/userServices';
+import Storage from './Storage';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 
 const getStatusType = statusCode => {
   if (statusCode >= 100 && statusCode < 200) {
@@ -28,6 +29,18 @@ const showFlashMessage = (statusCode, message) => {
     message,
   });
 };
+
+const jwtDecode = token => {
+  if (token) {
+    const parts = token.split('.').map(part => {
+      return Buffer.from(part.replace(/-/g, '+').replace(/_/g, '/'), 'base64');
+    });
+    const payload = JSON.parse(parts[1].toString());
+    return payload;
+  }
+  return null;
+};
+
 
 // Token'i decode ederek token'de saklanan kullanıcı
 // id'si ile kullanıcı verilerini döndürür.

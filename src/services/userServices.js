@@ -120,6 +120,7 @@ const sendEmailVerification = async (values, type) => {
       data: response.data.data,
     };
   } catch (err) {
+    console.log(err)
     if (err.response) {
       return {
         status: err.response.status,
@@ -227,6 +228,40 @@ const updatePassword = async (emailAddress, newPassword) => {
   }
 };
 
+//Şifre Değiştirme Fonksiyonu
+const passwordReset = async value => {
+  const { emailAddress } = value;
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/user/passwordReset?emailAddress=${emailAddress}`,
+    );
+    return {
+      status: response.status,
+      message: response.data.message,
+      data: response.data,
+    };
+  } catch (err) {
+    if (err.response) {
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
+    } else if (err.request) {
+      return {
+        status: 'Network Error',
+        message:
+          'The request was made but no response was received. Please check your network connection.',
+      };
+    } else {
+      return {
+        status: 'Error',
+        message:
+          'An error occurred while processing your request. Please try again.',
+      };
+    }
+  }
+};
+
 // Şifre güncelleme servis fonksiyonu
 const changePassword = async (userID, values) => {
   try {
@@ -270,5 +305,6 @@ export {
   sendEmailVerification,
   updateUser,
   updatePassword,
-  register
+  register,
+  passwordReset
 };

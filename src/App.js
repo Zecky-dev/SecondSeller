@@ -8,10 +8,7 @@ import THEMECOLORS from '@utils/colors';
 
 // React Navigation
 import {NavigationContainer} from '@react-navigation/native';
-import {
-  BottomTabBar,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import messaging from '@react-native-firebase/messaging';
@@ -35,24 +32,24 @@ import {
   Messages,
   Chat,
   UpdatePassword,
-  OwnerProfile,
+  OwnerProfile
 } from '@pages';
 
 // Context
-import UserContextProvider, {useUser} from '@context/UserProvider';
-import ThemeContextProvider, {useTheme} from '@context/ThemeContext';
+import UserContextProvider, {useUser} from './context/UserProvider';
+import ThemeContextProvider, {useTheme} from './context/ThemeContext';
 
 // FlashMessage
 import FlashMessage from 'react-native-flash-message';
 
 // Storage
-import {getUserFromToken} from '@utils/functions';
+import {getUserFromToken, makePhoneCall} from '@utils/functions';
 
 // Bootsplash
 import BootSplash from 'react-native-bootsplash';
 import {ChatHeader} from '@components';
 
-import {blockUser} from '@services/userServices';
+import {blockUser} from './services/userServices';
 import {handleForegroundMessages} from '@services/firebaseNotificationServices';
 
 const Tab = createBottomTabNavigator();
@@ -150,7 +147,7 @@ const ProfileMessagesStack = () => {
 
 const AdvertisementDetailStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{headerShown: false,}}>
       <Stack.Screen
         component={AdvertisementDetail}
         name="AdvertisementDetailScreen"
@@ -174,9 +171,10 @@ const AdvertisementDetailStack = () => {
 
       <Stack.Screen
         component={OwnerProfileStack}
-        name="OwnerProfileScreen"
-        options={{headerShown: false}}
-      />
+        name='OwnerProfileScreen'
+        options={{ headerShown: false}}
+        />
+
     </Stack.Navigator>
   );
 };
@@ -216,22 +214,23 @@ const ProfileStack = ({navigation}) => {
   );
 };
 
+
 const OwnerProfileStack = () => {
-  return (
+  return (  
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="OwnerProfileStackScreen" component={OwnerProfile} />
-      <Stack.Screen name="OwnerProfileChat" component={Chat} />
-      <Stack.Screen
-        name="OwnerProfileDetail"
-        component={AdvertisementDetailStack}
-      />
+      <Stack.Screen name='OwnerProfileStackScreen' component={OwnerProfile}/>
+      <Stack.Screen name='OwnerProfileChat' component={Chat}/>
+      <Stack.Screen name='OwnerProfileDetail' component={AdvertisementDetailStack} />
     </Stack.Navigator>
-  );
-};
+  )
+}
+
+
 
 // Favoriler ve ilanlarım stack'i
 
 const AdvertisementStack = ({navigation}) => {
+
   const isAdvertisementsFocused = useIsFocused();
 
   useEffect(() => {
@@ -260,7 +259,9 @@ const AdvertisementStack = ({navigation}) => {
         component={CreateAndUpdateAdvertisement}
         name="UpdateAdvertisementScreen"
       />
-      <Stack.Screen component={OwnerProfileStack} name="OwnerProfileScreen" />
+      <Stack.Screen
+        component={OwnerProfileStack}
+        name='OwnerProfileScreen'/>
     </Stack.Navigator>
   );
 };
@@ -402,8 +403,7 @@ const App = () => {
           barStyle={'light-content'}
         />
         <NavigationContainer linking={linking}>
-          <BottomTabs />
-          {/*user ? <BottomTabs /> : <AuthStack />*/}
+          {user ? <BottomTabs /> : <AuthStack />}
         </NavigationContainer>
       </View>
       <FlashMessage position={'top'} />
