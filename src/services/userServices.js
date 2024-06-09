@@ -89,7 +89,7 @@ const getUser = async (userID, token) => {
       data: response.data.data,
     };
   } catch (err) {
-    console.log("ERROR_USER",err)
+    console.log('ERROR_USER', err);
     return {
       status: 'error',
       message: 'An error occurred while processing your request.',
@@ -176,10 +176,17 @@ const updateUser = async (userID, values) => {
   }
 };
 
-const blockUser = async (from, userID) => {
+const blockUser = async (token, from, userID) => {
   try {
     const response = await axios.put(
       `${BASE_URL}/user/block?from=${from}&id=${userID}`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      },
     );
     return {
       status: response.status,
@@ -230,7 +237,7 @@ const updatePassword = async (emailAddress, newPassword) => {
 
 //Şifre Değiştirme Fonksiyonu
 const passwordReset = async value => {
-  const { emailAddress } = value;
+  const {emailAddress} = value;
   try {
     const response = await axios.get(
       `${BASE_URL}/user/passwordReset?emailAddress=${emailAddress}`,
@@ -316,7 +323,6 @@ const favoriteUnFavorite = async (userID, advertisementID) => {
   }
 };
 
-
 export {
   getSenderReceiverData,
   login,
@@ -328,5 +334,5 @@ export {
   updatePassword,
   register,
   passwordReset,
-  favoriteUnFavorite
+  favoriteUnFavorite,
 };
