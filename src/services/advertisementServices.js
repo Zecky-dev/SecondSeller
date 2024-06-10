@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {BASE_URL} from '@env';
 
-import { deleteRoom } from './firebaseChatService';
+import {deleteRoom} from './firebaseChatService';
 
 // İlan yaratmak için kullanılan servis fonksiyonu
 const createAdvertisementAPI = async (values, token) => {
@@ -134,10 +134,12 @@ const updateAdvertisementAPI = async (id, values, token) => {
 // Öncelikle ilanla ilgili olan mesajlaşmaları siler
 // Ardıdan ilanın kendisini siler
 const removeAdvertisement = async (id, token) => {
-  await deleteRoom(id)
+  await deleteRoom(id);
   if (token) {
     try {
-      const response = await axios.delete(`${BASE_URL}/advertisements/remove?id=${id}`,{
+      const response = await axios.delete(
+        `${BASE_URL}/advertisements/remove?id=${id}`,
+        {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + token,

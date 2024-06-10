@@ -31,8 +31,8 @@ const FilterModal = ({isVisible, setVisible, filter}) => {
               price: 'default',
               date: 'default',
               category: 'default',
-              min: null,
-              max: null,
+              price_min: null,
+              price_max: null,
             }}
             onSubmit={values => {
               filter(values);
@@ -79,8 +79,8 @@ const FilterModal = ({isVisible, setVisible, filter}) => {
                   <Input
                     label={'Minimum Fiyat'}
                     keyboardType="number-pad"
-                    value={values.min}
-                    onChangeText={handleChange('min')}
+                    value={values.price_min}
+                    onChangeText={handleChange('price_min')}
                     placeholder="0 TL"
                     additionalStyles={{
                       outerContainer: {
@@ -92,8 +92,8 @@ const FilterModal = ({isVisible, setVisible, filter}) => {
                     label={'Maksimum Fiyat'}
                     keyboardType="number-pad"
                     placeholder="999 TL"
-                    value={values.max}
-                    onChangeText={handleChange('max')}
+                    value={values.price_max}
+                    onChangeText={handleChange('price_max')}
                     additionalStyles={{
                       outerContainer: {
                         flex: 1,
