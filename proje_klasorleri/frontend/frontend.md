@@ -3,53 +3,42 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 
 ## Zekeriya Dönmez Tasarımları
 
-1. Kayıt olma
-2. İlan paylaşılması
-3. İlan bilgilerinin görüntülenmesi
-4. Profil görüntüleme
-5. Favorilere ekleme
-6. Fiyata göre filtreleme (artan / azalan)
+1. Kayıt Olma Sayfası (Register)
+2. İlan Paylaşma ve Güncelleme Sayfası (CreateAndUpdateAdvertisement)
+3. Ana Sayfa (Home)
+4. Ana Sayfa Filtreleme Ekranı (Home/FilterModal)
+5. Farklı Kullanıcıların İlanları Sayfası (OwnerProfile)
 
 ## Selin Aydemir Tasarımları
 
-1. Fiyat teklifi gönderme
-2. Favorilerin listelenmesi
-3. Arama yapma
-4. İlanı silme
-5. İlanın satıldı olarak işaretlenmesi
-6. Otomatik mesaj
+1. İlan Detay Sayfası Teklif Ver Ekranı (AdvertisementDetail/OfferModal)
+2. Favoriler Sayfası (OwnFavoriteAdvertisements)
+3. Favoriler Sayfası İlan Kartları (OwnFavoriteAdvertisements / Advertisement)
+4. Sohbet Ekranı Hızlı Mesaj Alanı (Chat/FastMessageChips)
 
 ## İsmail Kaya Tasarımları
 
-1. Giriş yapma
-2. Favorilerden kaldırma
-3. İlan düzenleme
-4. İlan arama yapma
-5. Bildirim ayarları
-6. Tarihe göre filtreleme
+1. Giriş Yapma Sayfası (Login)
+2. Profil Sayfası (Profile)
+3. İlan Detay Sayfası (AdvertisementDetail)
+4. İlan Detay Sayfası Tam Ekran Resim (AdvertismentDetail/FullScreenImageModal)
 
 ## Alper Avcı Tasarımları
 
-1. Yazılı sohbet <br>
-   <img src="./alper_avci_images/chat.jpg" alt="Chat Ekranı Tasarımı" height="300" />
-2. Paylaşılan ilanların görüntülenmesi <br>
-   <img src="./alper_avci_images/own-advertisements.jpg" alt="İlanlarım Ekranı Tasarımı" height="300" />
-3. Engelleme <br>
-   <img src="./alper_avci_images/block-user.jpg" alt="Kullanıcı Engelleme" height="300" />
-4. Profil düzenleme <br>
-   <img src="./alper_avci_images/update-profile.jpg" alt="Profil Düzenleme Ekranı Tasarımı" height="300" /> <br>
-   <img src="./alper_avci_images/update-profile-email-verification.jpg" alt="Profil Düzenleme - Eposta Doğrulama Ekranı Tasarımı" height="300" /> <br>
-   <img src="./alper_avci_images/change-password.jpg" alt="Şifre Güncelleme Ekranı Tasarımı" height="300" />
-5. Koyu & Açık Tema <br>
-   <img src="./alper_avci_images/dark-light.jpg" alt="Koyu & Açık Tema Tasarımı" height="300" />
-6. Fiyat aralığına göre filtreleme <br>
-   <img src="./alper_avci_images/price-min-max-filter.jpg" alt="Filtreleme Tasarımı" height="300" />
+1. Sohbet Sayfası (Chat)
+   <img src="./alper_avci_images/chat.jpg" alt="Sohbet Ekranı" height="300" />
+2. Şifre Değiştirme Sayfası (Profile/ChangePassword)
+   <img src="./alper_avci_images/change-password.jpg" alt="Şifre Güncelleme" height="300" />
+3. Sohbet Odaları (Profile/Messages)
+   <img src="./alper_avci_images/messages.jpg" alt="Mesajlar Sayfası Tasarımı" height="300" />
+4. Profil Güncelleme (Profile Edit)
+   <img src="./alper_avci_images/update-profile.jpg" alt="Profil Güncelleme Sayfası Tasarımı" height="300" />
+5. Farklı Kullanıcı İlanları İlan Kartı (OwnerProfile/AdvertisementCard)
+   <img src="./alper_avci_images/ownerprofile-advertisement.jpg" alt="Filtreleme Tasarımı" height="300" />
 
 ## Kamil Özdemir Tasarımları
 
-- Hesap silme
-- Konum paylaşma
-- Çıkış yapma
-- Şifremi unuttum
-- İlanın konumunun görüntülenmesi
-- Kategoriye göre filtreleme
+1. Sohbet Mesaj Alanı (Chat/ChatInput)
+2. Şifremi Unuttum Sayfası (Forgot)
+3. Şifre Değiştirme Sayfası (Forgot/UpdatePassword)
+4. Eposta Doğrulama Sayfası (EmailVerification)
