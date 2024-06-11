@@ -24,7 +24,7 @@
 4. [Durum Senaryoları](proje_klasorleri/durum_senaryolari/durum_senaryolari.md)
 5. [Veritabanı Diyagramı](https://ibb.co/3WHmKD5)
 6. [Front-End](proje_klasorleri/frontend/frontend.md)
-7. [Back-End]()
+7. [Back-End](proje_klasorleri/backend.md)
 8. [Test]()
 9. [Geliştirici ve Kullanıcı Dökümantasyonları]()
 
