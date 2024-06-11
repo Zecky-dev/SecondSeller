@@ -25,15 +25,15 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 
 ## Alper Avcı Tasarımları
 
-1. Sohbet Sayfası (Chat)
+1. Sohbet Sayfası (Chat) <br>
    <img src="./alper_avci_images/chat.jpg" alt="Sohbet Ekranı" height="300" />
-2. Şifre Değiştirme Sayfası (Profile/ChangePassword)
+2. Şifre Değiştirme Sayfası (Profile/ChangePassword) <br>
    <img src="./alper_avci_images/change-password.jpg" alt="Şifre Güncelleme" height="300" />
-3. Sohbet Odaları (Profile/Messages)
+3. Sohbet Odaları (Profile/Messages) <br>
    <img src="./alper_avci_images/messages.jpg" alt="Mesajlar Sayfası Tasarımı" height="300" />
-4. Profil Güncelleme (Profile Edit)
+4. Profil Güncelleme (Profile Edit) <br>
    <img src="./alper_avci_images/update-profile.jpg" alt="Profil Güncelleme Sayfası Tasarımı" height="300" />
-5. Farklı Kullanıcı İlanları İlan Kartı (OwnerProfile/AdvertisementCard)
+5. Farklı Kullanıcı İlanları İlan Kartı (OwnerProfile/AdvertisementCard) <br>
    <img src="./alper_avci_images/ownerprofile-advertisement.jpg" alt="Filtreleme Tasarımı" height="300" />
 
 ## Kamil Özdemir Tasarımları
