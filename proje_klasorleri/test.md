@@ -31,4 +31,5 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 1. Kullanıcı Güncelleme
 2. Şifre Değiştirme
 3. Bütün İlanları Getirme
-4. Kullanıcı Bloklama / Blok Kaldırma
+4. Kullanıcı Bloklama / Blok Kaldırma <br>
+   YouTube Test Link: [https://www.youtube.com/watch?v=sd4QIsQ9itI](https://www.youtube.com/watch?v=sd4QIsQ9itI)
