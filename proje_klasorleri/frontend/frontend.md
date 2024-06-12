@@ -31,7 +31,7 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
    <img src="./alper_avci_images/change-password.jpg" alt="Şifre Güncelleme" height="300" />
 3. Sohbet Odaları (Profile/Messages) <br>
    <img src="./alper_avci_images/messages.jpg" alt="Mesajlar Sayfası Tasarımı" height="300" />
-4. Profil Güncelleme (Profile Edit) <br>
+4. Profil Güncelleme (Profile/ProfileEdit) <br>
    <img src="./alper_avci_images/update-profile.jpg" alt="Profil Güncelleme Sayfası Tasarımı" height="300" />
 5. Farklı Kullanıcı İlanları İlan Kartı (OwnerProfile/AdvertisementCard) <br>
    <img src="./alper_avci_images/ownerprofile-advertisement.jpg" alt="Filtreleme Tasarımı" height="300" />
