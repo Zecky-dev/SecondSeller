@@ -92,9 +92,9 @@ const EmailVerification = ({navigation, route}) => {
         />
         <Button
           onPress={() =>
-            type == 'register'
+            type === 'register'
               ? checkAndRegister()
-              : 'forgotPassword'
+              : type === 'forgotPassword'
               ? checkAndUpdatePassword()
               : checkAndUpdate()
           }

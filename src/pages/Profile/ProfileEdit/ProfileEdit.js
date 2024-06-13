@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import {Image, ScrollView, Pressable, Alert} from 'react-native';
+import {Image, ScrollView, Pressable, Text, Alert} from 'react-native';
 
 import {getStyles} from './ProfileEdit.style';
+import {useTheme} from '../../../context/ThemeContext';
 
 import {useUser} from '@context/UserProvider';
-import {useTheme} from '@context/ThemeContext';
-
 import {UpdateProfileSchema} from '@utils/validationSchemas';
 import {Formik} from 'formik';
 import {Animation, Button, Input} from '@components';
@@ -78,7 +77,10 @@ const ProfilEdit = ({navigation}) => {
 
   // Kullanıcı bilgilerini güncelleme
   const handleUpdate = async newUser => {
+    setLoading(true);
     let type = '';
+
+    // phoneNumber veya emailAddress güncellendi mi kontrolü
     if (
       user.emailAddress !== newUser.emailAddress &&
       user.phoneNumber !== newUser.phoneNumber
@@ -96,7 +98,8 @@ const ProfilEdit = ({navigation}) => {
       const imageURL = (await uploadImagesAndGetURLs(images))[0];
       newUser.imageURL = imageURL;
     }
-    
+
+    // Eğer phoneNumber veya emailAddress güncellenmiş ise yeni değerler sistemde var mı kontorlü yap
     if (type) {
       const response = await sendEmailVerification(newUser, type);
       if (response.status.toString().startsWith('2')) {
@@ -110,9 +113,7 @@ const ProfilEdit = ({navigation}) => {
         });
       }
       showFlashMessage(response.status, response.message);
-    } 
-    
-    else {
+    } else {
       const response = await updateUser(user._id, newUser);
       showFlashMessage(response.status, response.message);
       if (response.status.toString().startsWith('2')) {
@@ -121,7 +122,7 @@ const ProfilEdit = ({navigation}) => {
         navigation.navigate('ProfileStackScreen');
       }
     }
-    
+    setLoading(false);
   };
 
   if (!loading) {
@@ -160,36 +161,36 @@ const ProfilEdit = ({navigation}) => {
               <Input
                 label={'Ad Soyad'}
                 onChangeText={handleChange('nameSurname')}
+                value={values.nameSurname}
+                placeholder={user.nameSurname}
                 errors={
                   touched.nameSurname &&
                   errors.nameSurname &&
                   errors.nameSurname
                 }
-                value={values.nameSurname}
-                placeholder={user.nameSurname}
               />
               <Input
                 label={'E-posta Adresi'}
                 onChangeText={handleChange('emailAddress')}
+                value={values.emailAddress}
                 keyboardType="email-address"
+                placeholder={user.emailAddress}
                 errors={
                   touched.emailAddress &&
                   errors.emailAddress &&
                   errors.emailAddress
                 }
-                value={values.emailAddress}
-                placeholder={user.emailAddress}
               />
               <Input
                 label={'Telefon Numarası'}
                 onChangeText={handleChange('phoneNumber')}
+                value={values.phoneNumber}
                 keyboardType="number-pad"
                 errors={
                   touched.phoneNumber &&
                   errors.phoneNumber &&
                   errors.phoneNumber
                 }
-                value={values.phoneNumber}
                 placeholder={user.phoneNumber}
               />
               <Button

@@ -22,7 +22,7 @@ const LittleCard = ({
   onPress,
   isOwner,
   styles,
-  favoriteUnfavorite, // Favori durumunu güncelleyecek fonksiyon, backend kısmında dahil edilecek
+  favoriteUnfavorite,
 }) => {
   const {user, setUser} = useUser();
   const {images, title, price} = advertisement;
@@ -37,7 +37,7 @@ const LittleCard = ({
   // Eğer local de bulunan user'ın favorileri güncellenirse kart üzerindeki icon'lar tekrardan düzenlenecek
   useEffect(() => {
     setLiked(user?.favorites?.includes(advertisement._id));
-  }, [user?.favorites]);
+  }, [user.favorites]);
 
   // Kalp icon'una basılınca ilan favorilere eklenecek veya favorilerden kaldırılacak,
   // local de bulunan user'ın favorites değeri güncellenecek
@@ -58,7 +58,6 @@ const LittleCard = ({
       activeOpacity={0.7}>
       <View>
         <Image source={{uri: images[0]}} style={styles.image} />
-        {/* Eğer kullanıcı ilanın sahibi değilse kalp iconunu göster */}
         {isOwner !== true && (
           <Pressable
             onPress={() => {
@@ -87,7 +86,7 @@ const BigCard = ({
   onPress,
   isOwner,
   styles,
-  favoriteUnfavorite, // Favori durumunu güncelleyecek fonksiyon, backend kısmında dahil edilecek
+  favoriteUnfavorite,
   handleSoldStatus,
   handleUpdateButton,
 }) => {
@@ -103,7 +102,9 @@ const BigCard = ({
     soldStatus,
     _id: id,
   } = advertisement;
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(
+    user?.favorites.includes(advertisement._id),
+  );
   const [isSold, setIsSold] = useState(soldStatus);
 
   const getLastFavorites = async () => {
@@ -125,7 +126,6 @@ const BigCard = ({
       <Text style={styles.name}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.price}>{price} TL</Text>
-      {/* Eğer kullanıcı ilanın sahibi değilse kalp iconunu göster */}
       {!isOwner && (
         <Pressable
           onPress={() => {
@@ -139,7 +139,6 @@ const BigCard = ({
           />
         </Pressable>
       )}
-      {/* Eğer kullanıcı ilanın sahibi ise düzenleme ve satılma durumunu değiştirme butonlarını göster*/}
       {isOwner && (
         <View style={styles.actionButtonsContainer}>
           <Button
