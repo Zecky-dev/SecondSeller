@@ -14,6 +14,7 @@ const Animation = ({animationName}) => {
   const animations = {
     loading: theme === 'dark' ? loadingDark : loadingLight,
   };
+
   const animation = animations[animationName];
   return (
     <LottieView
