@@ -34,6 +34,21 @@ const Register = ({navigation}) => {
   const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
   const styles = getStyles(theme);
 
+  const register = async user => {
+    setLoading(true);
+    const response = await sendEmailVerification(user, '');
+    if (response.status.toString().startsWith('2')) {
+      navigation.navigate('EmailVerificationScreen', {
+        verificationCode: response.data,
+        user,
+        type: 'register',
+      });
+    } else {
+      showFlashMessage(response.status, response.message);
+    }
+    setLoading(false);
+  };
+
   if (!loading) {
     return (
       <View style={{backgroundColor: COLORS.pageBackground}}>
@@ -55,20 +70,7 @@ const Register = ({navigation}) => {
           <View style={styles.title} />
           <Formik
             initialValues={initialValues}
-            onSubmit={async user => {
-              setLoading(true);
-              const response = await sendEmailVerification(user, '');
-              if (response.status.toString().startsWith('2')) {
-                navigation.navigate('EmailVerificationScreen', {
-                  verificationCode: response.data,
-                  user,
-                  type: 'register',
-                });
-              } else {
-                showFlashMessage(response.status, response.message);
-              }
-              setLoading(false);
-            }}
+            onSubmit={user => register(user)}
             validationSchema={RegisterSchema}>
             {({handleChange, handleSubmit, values, errors, touched}) => (
               <>
