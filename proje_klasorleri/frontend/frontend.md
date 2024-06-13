@@ -4,10 +4,16 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 ## Zekeriya Dönmez Tasarımları
 
 1. Kayıt Olma Sayfası (Register)
+<img src="./zekeriya_donmez_images/register.png" alt="Kayıt Ekranı" height="300" />
 2. İlan Paylaşma ve Güncelleme Sayfası (CreateAndUpdateAdvertisement)
+<img src="./zekeriya_donmez_images/create-advertisement.png" alt="İlan Paylaşma Ekranı" height="300" />
+<img src="./zekeriya_donmez_images/update-advertisement.png" alt="İlan Güncelleme Ekranı" height="300" />
 3. Ana Sayfa (Home)
+<img src="./zekeriya_donmez_images/home.png" alt="Anasayfa Ekranı" height="300" />
 4. Ana Sayfa Filtreleme Ekranı (Home/FilterModal)
+<img src="./zekeriya_donmez_images/filter-advertisement.png" alt="Anasayfa Filtreleme Ekranı" height="300" />
 5. Farklı Kullanıcıların İlanları Sayfası (OwnerProfile)
+<img src="./zekeriya_donmez_images/different-user-advertisement.png" alt="Farklı Kullanıcıların İlanları Sayfası" height="300" />
 
 ## Selin Aydemir Tasarımları
 
