@@ -6,7 +6,9 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 1. Kayıt Olma
 2. İlan Oluşturma
 3. İlanları Filtreleme
-4. Kullanıcı Bilgileri Getirme
+4. Kullanıcı Bilgileri Getirme <br>
+   YouTube Test Link: [https://www.youtube.com/watch?v=pWEZi3asbd8&t=3s](https://www.youtube.com/watch?v=pWEZi3asbd8&t=3s)
+
 
 ## Selin Aydemir Test
 
