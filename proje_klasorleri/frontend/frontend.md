@@ -4,36 +4,35 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 ## Zekeriya Dönmez Tasarımları
 
 1. Kayıt Olma Sayfası (Register) <br>
-<img src="./zekeriya_donmez_images/register.png" alt="Kayıt Ekranı" height="300" />
+   <img src="./zekeriya_donmez_images/register.png" alt="Kayıt Ekranı" height="300" />
 
 2. İlan Paylaşma ve Güncelleme Sayfası (CreateAndUpdateAdvertisement) <br>
-<img src="./zekeriya_donmez_images/create-advertisement.png" alt="İlan Paylaşma Ekranı" height="300" />
-<img src="./zekeriya_donmez_images/update-advertisement.png" alt="İlan Güncelleme Ekranı" height="300" />
+   <img src="./zekeriya_donmez_images/create-advertisement.png" alt="İlan Paylaşma Ekranı" height="300" />
+   <img src="./zekeriya_donmez_images/update-advertisement.png" alt="İlan Güncelleme Ekranı" height="300" />
 
 3. Ana Sayfa (Home) <br>
-<img src="./zekeriya_donmez_images/home.png" alt="Anasayfa Ekranı" height="300" />
+   <img src="./zekeriya_donmez_images/home.png" alt="Anasayfa Ekranı" height="300" />
 
 4. Ana Sayfa Filtreleme Ekranı (Home/FilterModal) <br>
-<img src="./zekeriya_donmez_images/filter-advertisement.png" alt="Anasayfa Filtreleme Ekranı" height="300" />
+   <img src="./zekeriya_donmez_images/filter-advertisement.png" alt="Anasayfa Filtreleme Ekranı" height="300" />
 
 5. Farklı Kullanıcıların İlanları Sayfası (OwnerProfile) <br>
-<img src="./zekeriya_donmez_images/different-user-advertisement.png" alt="Farklı Kullanıcıların İlanları Sayfası" height="300" />
+   <img src="./zekeriya_donmez_images/different-user-advertisement.png" alt="Farklı Kullanıcıların İlanları Sayfası" height="300" />
 
 ## Selin Aydemir Tasarımları
 
 1. İlan Detay Sayfası Teklif Ver Ekranı (AdvertisementDetail/OfferModal) <br>
-<img src="./selin_aydemir_images/offer-page.png" alt="Teklif Sayfası" height="300" />
+   <img src="./selin_aydemir_images/offer-page.png" alt="Teklif Sayfası" height="300" />
 
 2. Favoriler Sayfası (OwnFavoriteAdvertisements) <br>
-<img src="./selin_aydemir_images/favorite-page.png" alt="Favoriler Sayfası" height="300" />
+   <img src="./selin_aydemir_images/favorite-page.png" alt="Favoriler Sayfası" height="300" />
 
 3. Favoriler Sayfası İlan Kartları (OwnFavoriteAdvertisements / Advertisement) <br>
-<img src="./selin_aydemir_images/favorite-card.png" alt="Favoriler Sayfası İlan Kartları" height="300" />
+   <img src="./selin_aydemir_images/favorite-card.png" alt="Favoriler Sayfası İlan Kartları" height="300" />
 
 4. Sohbet Ekranı Hızlı Mesaj Alanı (Chat/FastMessageChips) <br>
-<img src="./selin_aydemir_images/fast-message.png
-" alt="Hızlı Mesaj Alanı" height="300" />
-
+   <img src="./selin_aydemir_images/fast-message.png"
+   alt="Hızlı Mesaj Alanı" height="300" />
 
 ## İsmail Kaya Tasarımları
 

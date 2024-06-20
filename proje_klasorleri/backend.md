@@ -7,45 +7,44 @@ REST API: Kullanıldı
 
 ```javascript
 const register = async (req, res) => {
-  const { password } = req.body;
+  const {password} = req.body;
   const saltRounds = 10;
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const userInfo = { ...req.body, password: hashedPassword };
+    const userInfo = {...req.body, password: hashedPassword};
     const existingUser = await User.findOne({
       $or: [
-        { emailAddress: userInfo.emailAddress },
-        { phoneNumber: userInfo.phoneNumber },
+        {emailAddress: userInfo.emailAddress},
+        {phoneNumber: userInfo.phoneNumber},
       ],
     });
     if (!existingUser) {
       const createdUser = await User.create(userInfo);
       const token = jwt.sign(
-        { userId: createdUser._id },
+        {userId: createdUser._id},
         process.env.JWT_SECRET_TOKEN,
-        { expiresIn: "24h" }
+        {expiresIn: '24h'},
       );
       return res.status(201).json({
-        status: "success",
-        message: "Kullanıcı oluşturuldu!",
+        status: 'success',
+        message: 'Kullanıcı oluşturuldu!',
         token,
       });
     } else {
       return res.status(409).json({
-        status: "error",
-        message: "Kullanıcı zaten mevcut",
+        status: 'error',
+        message: 'Kullanıcı zaten mevcut',
       });
     }
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "Kullanıcı oluşturulurken bir hata meudana geldi!",
+      status: 'error',
+      message: 'Kullanıcı oluşturulurken bir hata meudana geldi!',
       error: err.response.data,
     });
   }
 };
 ```
-
 
 2. İlan Oluşturma
 
@@ -56,17 +55,17 @@ const createAdvertisement = async (req, res) => {
     const newAdvertisementID = newAdvertisement.id;
     const postOwnerID = newAdvertisement.owner;
     await User.findByIdAndUpdate(postOwnerID, {
-      $push: { advertisements: newAdvertisementID },
+      $push: {advertisements: newAdvertisementID},
     });
     return res.status(201).json({
-      status: "success",
-      message: "İlan oluşturuldu!",
+      status: 'success',
+      message: 'İlan oluşturuldu!',
       data: newAdvertisement,
     });
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "Sunucu hatası!",
+      status: 'error',
+      message: 'Sunucu hatası!',
       error: err.message,
     });
   }
@@ -85,50 +84,49 @@ const filterAdvertisements = async (req, res) => {
     const priceMin = parseInt(queryParameters.price_min);
     const priceMax = parseInt(queryParameters.price_max);
     if (!isNaN(priceMin)) {
-      filter.price = { $gte: priceMin };
+      filter.price = {$gte: priceMin};
     }
     if (!isNaN(priceMax)) {
-      filter.price = { ...filter.price, $lte: priceMax }; // Eğer priceMin da verilmişse, aynı objenin içine $lte de eklenmeli
+      filter.price = {...filter.price, $lte: priceMax}; // Eğer priceMin da verilmişse, aynı objenin içine $lte de eklenmeli
     }
 
     // Kategori kontrolü
     const category = queryParameters.category;
-    if (category && category !== "default") {
+    if (category && category !== 'default') {
       filter.category = category;
     }
 
     // Kategori kontrolü
     const title = queryParameters.title;
-    if (title && title !== "") {
-      filter.title = { $regex: title, $options: "i" };
+    if (title && title !== '') {
+      filter.title = {$regex: title, $options: 'i'};
     }
 
     // Mongoose sort objesi
     const sort = {};
     for (let query in queryParameters) {
       const val = queryParameters[query];
-      if (query === "price" || query === "date") {
-        sort[query] = val === "ascending" ? 1 : -1;
+      if (query === 'price' || query === 'date') {
+        sort[query] = val === 'ascending' ? 1 : -1;
       }
     }
     const filteredAdvertisements = await Advertisement.find(filter)
       .sort(sort)
       .exec();
     return res.status(200).json({
-      status: "success",
-      message: "Filtrelenmiş ilanlar getirildi!",
+      status: 'success',
+      message: 'Filtrelenmiş ilanlar getirildi!',
       data: filteredAdvertisements,
     });
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "İlanlar filtrelenirken bir hata meydana geldi!",
+      status: 'error',
+      message: 'İlanlar filtrelenirken bir hata meydana geldi!',
       error: err.response.data,
     });
   }
 };
 ```
-
 
 4. Kullanıcı Bilgileri Getirme
 
@@ -140,26 +138,25 @@ const getUser = async (req, res) => {
     // Eğer user null ise, 404 Not Found yanıtı döndür
     if (!user) {
       return res.status(404).json({
-        status: "error",
-        message: "Kullanıcı bulunamadı!",
+        status: 'error',
+        message: 'Kullanıcı bulunamadı!',
       });
     }
 
     return res.status(200).json({
-      status: "success",
-      message: "Kullanıcı getirildi!",
+      status: 'success',
+      message: 'Kullanıcı getirildi!',
       data: user,
     });
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "Kullanıcı getirilirken hata meydana geldi!",
+      status: 'error',
+      message: 'Kullanıcı getirilirken hata meydana geldi!',
       error: err.message,
     });
   }
 };
 ```
-
 
 ## Selin Aydemir Kodlama
 
@@ -172,31 +169,30 @@ const updateAdvertisement = async (req, res) => {
     const updatedAdvertisement = await Advertisement.findByIdAndUpdate(
       advertisementID,
       req.body,
-      { new: true }
+      {new: true},
     );
 
     if (!updatedAdvertisement) {
       return res.status(404).json({
-        status: "error",
-        message: "İlan bulunamadı!",
+        status: 'error',
+        message: 'İlan bulunamadı!',
       });
     }
 
     return res.status(200).json({
-      status: "success",
-      message: "İlan güncellendi!",
+      status: 'success',
+      message: 'İlan güncellendi!',
       data: updatedAdvertisement,
     });
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "Sunucu hatası!",
+      status: 'error',
+      message: 'Sunucu hatası!',
       error: err.message,
     });
   }
 };
 ```
-
 
 2. İlan Silme
 
@@ -205,23 +201,23 @@ const removeAdvertisement = async (req, res) => {
   try {
     const advertisementID = req.query.id;
     const deletedAdvertisement = await Advertisement.findByIdAndDelete(
-      advertisementID
+      advertisementID,
     );
     if (!deletedAdvertisement) {
       return res.status(404).json({
-        status: "error",
-        message: "İlan bulunamadı!",
+        status: 'error',
+        message: 'İlan bulunamadı!',
       });
     }
     return res.status(200).json({
-      status: "success",
-      message: "İlan silindi!",
+      status: 'success',
+      message: 'İlan silindi!',
       data: deletedAdvertisement,
     });
   } catch (err) {
     return res.status(500).json({
-      status: "error",
-      message: "Sunucu hatası!",
+      status: 'error',
+      message: 'Sunucu hatası!',
       error: err.message,
     });
   }
@@ -232,15 +228,15 @@ const removeAdvertisement = async (req, res) => {
 
 ```javascript
 const sendEmailVerification = async (req, res) => {
-  const { emailAddress, phoneNumber, type } = req.body;
+  const {emailAddress, phoneNumber, type} = req.body;
   let filters;
 
-  if (type === "phoneNumberUpdate") {
-    filters = [{ phoneNumber }];
-  } else if (type === "emailAddressUpdate") {
-    filters = [{ emailAddress }];
+  if (type === 'phoneNumberUpdate') {
+    filters = [{phoneNumber}];
+  } else if (type === 'emailAddressUpdate') {
+    filters = [{emailAddress}];
   } else {
-    filters = [{ emailAddress }, { phoneNumber }];
+    filters = [{emailAddress}, {phoneNumber}];
   }
   userExists = await User.findOne({
     $or: filters,
@@ -248,14 +244,14 @@ const sendEmailVerification = async (req, res) => {
   if (!userExists) {
     const verificationCode = await sendVerificationEmail(emailAddress);
     return res.status(200).json({
-      status: "success",
+      status: 'success',
       message: "Doğrulama e-posta'sı gönderildi!",
       data: verificationCode,
     });
   } else {
     return res.status(500).json({
-      status: "error",
-      message: "Kullanıcı zaten kayıtlı!",
+      status: 'error',
+      message: 'Kullanıcı zaten kayıtlı!',
     });
   }
 };
@@ -277,35 +273,34 @@ const sendEmailVerification = async (req, res) => {
 
 1. Kullanıcı Güncelleme
 
-   ```javascript
-   const updateUser = async (req, res) => {
-     try {
-       const userID = req.params.id;
-       const updatedUser = await User.findByIdAndUpdate(userID, req.body, {
-         returnDocument: 'after',
-       });
+```javascript
+const updateUser = async (req, res) => {
+  try {
+    const userID = req.params.id;
+    const updatedUser = await User.findByIdAndUpdate(userID, req.body, {
+      returnDocument: 'after',
+    });
 
-       if (!updatedUser) {
-         return res.status(404).json({
-           status: 'error',
-           message: 'Kullanıcı bulunamadı.',
-         });
-       }
-
-       return res.status(200).json({
-         status: 'success',
-         message: 'Kullanıcı güncellendi.',
-         data: updatedUser,
-       });
-     } catch (error) {
-       return res.status(500).json({
-         status: 'error',
-         message: 'Kullanıcı güncellenirken hata meydana geldi!',
-         error: err.message,
-       });
-     }
-   };
-   ```
+    if (!updatedUser) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Kullanıcı bulunamadı.',
+      });
+    }
+    return res.status(200).json({
+      status: 'success',
+      message: 'Kullanıcı güncellendi.',
+      data: updatedUser,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: 'Kullanıcı güncellenirken hata meydana geldi!',
+      error: err.message,
+    });
+  }
+};
+```
 
 2. Şifre Değiştirme
 
