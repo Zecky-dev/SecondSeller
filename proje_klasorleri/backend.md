@@ -164,8 +164,102 @@ const getUser = async (req, res) => {
 ## Selin Aydemir Kodlama
 
 1. İlan Güncelleme
+
+```javascript
+const updateAdvertisement = async (req, res) => {
+  try {
+    const advertisementID = req.params.id;
+    const updatedAdvertisement = await Advertisement.findByIdAndUpdate(
+      advertisementID,
+      req.body,
+      { new: true }
+    );
+
+    if (!updatedAdvertisement) {
+      return res.status(404).json({
+        status: "error",
+        message: "İlan bulunamadı!",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "İlan güncellendi!",
+      data: updatedAdvertisement,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Sunucu hatası!",
+      error: err.message,
+    });
+  }
+};
+```
+
+
 2. İlan Silme
+
+```javascript
+const removeAdvertisement = async (req, res) => {
+  try {
+    const advertisementID = req.query.id;
+    const deletedAdvertisement = await Advertisement.findByIdAndDelete(
+      advertisementID
+    );
+    if (!deletedAdvertisement) {
+      return res.status(404).json({
+        status: "error",
+        message: "İlan bulunamadı!",
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "İlan silindi!",
+      data: deletedAdvertisement,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Sunucu hatası!",
+      error: err.message,
+    });
+  }
+};
+```
+
 3. Doğrulama Epostası Gönderme
+
+```javascript
+const sendEmailVerification = async (req, res) => {
+  const { emailAddress, phoneNumber, type } = req.body;
+  let filters;
+
+  if (type === "phoneNumberUpdate") {
+    filters = [{ phoneNumber }];
+  } else if (type === "emailAddressUpdate") {
+    filters = [{ emailAddress }];
+  } else {
+    filters = [{ emailAddress }, { phoneNumber }];
+  }
+  userExists = await User.findOne({
+    $or: filters,
+  });
+  if (!userExists) {
+    const verificationCode = await sendVerificationEmail(emailAddress);
+    return res.status(200).json({
+      status: "success",
+      message: "Doğrulama e-posta'sı gönderildi!",
+      data: verificationCode,
+    });
+  } else {
+    return res.status(500).json({
+      status: "error",
+      message: "Kullanıcı zaten kayıtlı!",
+    });
+  }
+};
+```
 
 ## İsmail Kaya Kodlama
 

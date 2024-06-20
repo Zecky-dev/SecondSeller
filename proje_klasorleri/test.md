@@ -7,7 +7,7 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 2. İlan Oluşturma
 3. İlanları Filtreleme
 4. Kullanıcı Bilgileri Getirme <br>
-   YouTube Test Link: [https://www.youtube.com/watch?v=pWEZi3asbd8&t=3s](https://www.youtube.com/watch?v=pWEZi3asbd8&t=3s)
+   YouTube Test Link: [https://www.youtube.com/watch?v=pWEZi3asbd8&t=3s](https://www.youtube.com/watch?v=pWEZi3asbd8)
 
 
 ## Selin Aydemir Test
@@ -15,6 +15,8 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 1. İlan Güncelleme
 2. İlan Silme
 3. Doğrulama Epostası Gönderme
+   YouTube Test Link: [https://www.youtube.com/watch?v=8R56sQtGGkQ](https://www.youtube.com/watch?v=8R56sQtGGkQ)
+
 
 ## İsmail Kaya Test
 
