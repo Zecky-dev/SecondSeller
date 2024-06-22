@@ -1,6 +1,6 @@
 # Dökümantasyon Bağlantıları
 
-- [Zekeriya Dönmez](https://hallowed-marmot-afa.notion.site/SecondSeller-D-k-mantasyon-Zekeriya-D-nmez-92b4217110734b569ce31ec3e42fc8bf)
+- [Zekeriya Dönmez](https://secondseller-zekeriyadonmez.notion.site/SecondSeller-D-k-mantasyon-Zekeriya-D-nmez-92b4217110734b569ce31ec3e42fc8bf?pvs=4)
 - [Selin Aydemir]()
 - [İsmail Kaya]()
 - [Kamil Özdemir]()
