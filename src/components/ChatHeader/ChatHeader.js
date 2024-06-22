@@ -14,14 +14,13 @@ import {useUser} from '../../context/UserProvider';
 const ChatHeader = ({receiver, sender, title, blockUser}) => {
   const {_id: id, phoneNumber} = receiver;
 
-  const {user} = useUser();
+  const {user, setUser} = useUser();
 
   const {theme} = useTheme();
   const styles = getStyles(theme);
   const COLORS = theme === 'dark' ? THEMECOLORS.DARK : THEMECOLORS.LIGHT;
 
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <Text style={styles.advertisementName}>{title}</Text>
@@ -40,13 +39,13 @@ const ChatHeader = ({receiver, sender, title, blockUser}) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            blockUser(user.token, user._id, id);
+            blockUser(user.token, user._id, id, user, setUser);
             navigation.goBack();
           }}
           style={styles.button}
           activeOpacity={0.7}>
           <Icon
-            name="cancel"
+            name={user.blocked.includes(id) ? 'account-cancel' : 'cancel'}
             size={CONSTANTS.fontSize.L6}
             color={COLORS.titleColor}
           />

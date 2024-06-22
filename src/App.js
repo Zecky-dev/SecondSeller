@@ -32,7 +32,7 @@ import {
   Chat,
   UpdatePassword,
   OwnerProfile,
-  OwnFavoriteAdvertisements
+  OwnFavoriteAdvertisements,
 } from '@pages';
 
 // Context
@@ -102,6 +102,17 @@ const linking = {
   },
 };
 
+/*
+Bu fonksiyon kullanıcı engellendikten sonra veya engeli kaldırıldıktan sonra
+mevcut kullanıcının blocked listesini güncellemek amaçlıdır
+user ve setUser güncel engellenenler listesini görmek için kullanılır
+*/
+const handleBlockUser = async (token, from, userID, user, setUser) => {
+  const response = await blockUser(token, from, userID);
+  const blocked = response.data.blocked;
+  setUser({...user, blocked});
+};
+
 // İlanlar sayfası için kullanılan stack
 const HomeStack = () => {
   return (
@@ -135,7 +146,7 @@ const ProfileMessagesStack = () => {
               <ChatHeader
                 receiver={route.params.receiver}
                 title={route.params.title}
-                blockUser={blockUser}
+                blockUser={handleBlockUser}
               />
             ),
           };
@@ -147,7 +158,7 @@ const ProfileMessagesStack = () => {
 
 const AdvertisementDetailStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false,}}>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         component={AdvertisementDetail}
         name="AdvertisementDetailScreen"
@@ -162,7 +173,7 @@ const AdvertisementDetailStack = () => {
               <ChatHeader
                 receiver={route.params.receiver}
                 title={route.params.title}
-                blockUser={blockUser}
+                blockUser={handleBlockUser}
               />
             ),
           };
@@ -171,10 +182,9 @@ const AdvertisementDetailStack = () => {
 
       <Stack.Screen
         component={OwnerProfileStack}
-        name='OwnerProfileScreen'
-        options={{ headerShown: false}}
-        />
-
+        name="OwnerProfileScreen"
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
@@ -214,23 +224,22 @@ const ProfileStack = ({navigation}) => {
   );
 };
 
-
 const OwnerProfileStack = () => {
-  return (  
+  return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name='OwnerProfileStackScreen' component={OwnerProfile}/>
-      <Stack.Screen name='OwnerProfileChat' component={Chat}/>
-      <Stack.Screen name='OwnerProfileDetail' component={AdvertisementDetailStack} />
+      <Stack.Screen name="OwnerProfileStackScreen" component={OwnerProfile} />
+      <Stack.Screen name="OwnerProfileChat" component={Chat} />
+      <Stack.Screen
+        name="OwnerProfileDetail"
+        component={AdvertisementDetailStack}
+      />
     </Stack.Navigator>
-  )
-}
-
-
+  );
+};
 
 // Favoriler ve ilanlarım stack'i
 
 const AdvertisementStack = ({navigation}) => {
-
   const isAdvertisementsFocused = useIsFocused();
 
   useEffect(() => {
@@ -250,7 +259,10 @@ const AdvertisementStack = ({navigation}) => {
   };
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen component={OwnFavoriteAdvertisements} name="Advertisements" />
+      <Stack.Screen
+        component={OwnFavoriteAdvertisements}
+        name="Advertisements"
+      />
       <Stack.Screen
         component={AdvertisementDetail}
         name="OwnAdvertisementDetailScreen"
@@ -259,9 +271,7 @@ const AdvertisementStack = ({navigation}) => {
         component={CreateAndUpdateAdvertisement}
         name="UpdateAdvertisementScreen"
       />
-      <Stack.Screen
-        component={OwnerProfileStack}
-        name='OwnerProfileScreen'/>
+      <Stack.Screen component={OwnerProfileStack} name="OwnerProfileScreen" />
     </Stack.Navigator>
   );
 };
