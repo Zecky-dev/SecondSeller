@@ -26,7 +26,7 @@
 6. [Front-End](proje_klasorleri/frontend/frontend.md)
 7. [Back-End](proje_klasorleri/backend.md)
 8. [Test](proje_klasorleri/test.md)
-9. [Geliştirici ve Kullanıcı Dökümantasyonları](https://app.gitbook.com/o/yIAyCsarl9qsihYp8956/s/VVXB4UvzMMvcLlekneEd/)
+9. [Geliştirici ve Kullanıcı Dökümantasyonları](./proje_klasorleri/documentation.md)
 
 # Planlama Çizelgesi - Ek
 
