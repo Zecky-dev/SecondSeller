@@ -41,7 +41,6 @@ const jwtDecode = token => {
   return null;
 };
 
-
 // Token'i decode ederek token'de saklanan kullanıcı
 // id'si ile kullanıcı verilerini döndürür.
 const getUserFromToken = async () => {
@@ -108,6 +107,25 @@ const makePhoneCall = phoneNumber => {
   Linking.openURL(`tel:${phoneNumber}`);
 };
 
+const notificationPermissionGranted = async () => {
+  const granted = await PermissionsAndroid.check(
+    PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+  );
+  if (!granted) {
+    const permissionRequestResult = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+    );
+    return permissionRequestResult === 'granted';
+  }
+  return true;
+};
 
-
-export {getUserFromToken, resizeImage, showFlashMessage, getCurrentLocation, locationPermissionGranted, makePhoneCall};
+export {
+  getUserFromToken,
+  resizeImage,
+  showFlashMessage,
+  getCurrentLocation,
+  locationPermissionGranted,
+  makePhoneCall,
+  notificationPermissionGranted,
+};

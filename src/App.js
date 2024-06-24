@@ -43,7 +43,11 @@ import ThemeContextProvider, {useTheme} from './context/ThemeContext';
 import FlashMessage from 'react-native-flash-message';
 
 // Storage
-import {getUserFromToken, makePhoneCall} from '@utils/functions';
+import {
+  getUserFromToken,
+  makePhoneCall,
+  notificationPermissionGranted,
+} from '@utils/functions';
 
 // Bootsplash
 import BootSplash from 'react-native-bootsplash';
@@ -368,6 +372,9 @@ const BottomTabs = () => {
 };
 
 const AuthStack = () => {
+  useEffect(() => {
+    notificationPermissionGranted;
+  });
   return (
     <Stack.Navigator
       screenOptions={{
