@@ -14,7 +14,7 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 
 1. İlan Güncelleme
 2. İlan Silme
-3. Doğrulama Epostası Gönderme
+3. Doğrulama Epostası Gönderme <br>
    YouTube Test Link: [https://www.youtube.com/watch?v=8R56sQtGGkQ](https://www.youtube.com/watch?v=8R56sQtGGkQ)
 
 
@@ -22,7 +22,8 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 
 1. Giriş Yap
 2. İlan Bilgileri Getirme
-3. Favoriye Alma / Favoriden Kaldırma
+3. Favoriye Ekleme / Favoriden Kaldırma <br>
+   Youtube Test Link: [https://www.youtube.com/watch?v=1Q2uEQNF4VM](https://www.youtube.com/watch?v=1Q2uEQNF4VM)
 
 ## Kamil Özdemir Test
 
