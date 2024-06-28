@@ -36,10 +36,14 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 
 ## İsmail Kaya Tasarımları
 
-1. Giriş Yapma Sayfası (Login)
-2. Profil Sayfası (Profile)
-3. İlan Detay Sayfası (AdvertisementDetail)
-4. İlan Detay Sayfası Tam Ekran Resim (AdvertismentDetail/FullScreenImageModal)
+1. Giriş Yapma Sayfası (Login)<br>
+   <img src="./ismail_kaya_images/giriş-yapma.jpg" alt="Giriş Ekranı" height="300" />
+2. Profil Sayfası (Profile)<br>
+   <img src="./ismail_kaya_images/profil.jpg" alt="Profil Ekranı" height="300" />
+3. İlan Detay Sayfası (AdvertisementDetail)<br>
+   <img src="./ismail_kaya_images/ilan-detay.jpg" alt="İlan Detay Ekranı" height="300" />
+4. İlan Detay Sayfası Tam Ekran Resim (AdvertismentDetail/FullScreenImageModal)<br>
+   <img src="./ismail_kaya_images/tam-ekran.jpg" alt="Tam Ekran İlan Resimleri" height="300" />
 
 ## Alper Avcı Tasarımları
 

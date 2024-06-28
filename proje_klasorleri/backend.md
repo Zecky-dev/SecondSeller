@@ -260,8 +260,116 @@ const sendEmailVerification = async (req, res) => {
 ## İsmail Kaya Kodlama
 
 1. Giriş Yap
+```javascript
+const login = async (req, res) => {
+  try {
+    const { emailAddress, password } = req.body;
+    const user = await User.findOne({ emailAddress });
+    if (user) {
+      if (!user.activeStatus) {
+        return res.status(401).json({
+          status: "error",
+          message: "Aktif olmayan kullanıcı!",
+        });
+      }
+      const passwordValid = await bcrypt.compare(password, user.password);
+      if (passwordValid) {
+        const jwtToken = jwt.sign(
+          { userId: user._id },
+          process.env.JWT_SECRET_TOKEN,
+          { expiresIn: "24h" }
+        );
+        return res.status(200).json({
+          status: "success",
+          message: "Giriş başarılı!",
+          token: jwtToken,
+          id: user._id,
+        });
+      } else {
+        return res.status(401).json({
+          status: "error",
+          message: "E-posta adresi veya şifre hatalı!",
+        });
+      }
+    } else {
+      return res.status(401).json({
+        status: "error",
+        message: "E-posta adresi veya şifre hatalı!",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Giriş yaparken bir hata meydana geldi.",
+      error: err.message,
+    });
+  }
+};
+```
 2. İlan Bilgileri Getirme
+```javascript
+const getAdvertisement = async (req, res) => {
+  try {
+    const advertisementID = req.params.id;
+    const advertisement = await Advertisement.findById(advertisementID);
+    if (!advertisement) {
+      return res.status(404).json({
+        status: "error",
+        message: "İlan bulunamadı!",
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "İlan getirildi!",
+      data: advertisement,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Sunucu hatası!",
+      error: err.message,
+    });
+  }
+};
+```
 3. Favoriye Alma / Favoriden Kaldırma
+```javascript
+const favoriteUnfavorite = async (req, res) => {
+  const { userID, advertisementID } = req.body;
+  try {
+    let user = await User.findById(userID);
+    const isInclude = user.favorites.includes(advertisementID);
+    if (isInclude) {
+      user = await User.findByIdAndUpdate(
+        userID,
+        { $pull: { favorites: advertisementID } },
+        { returnDocument: "after" }
+      );
+    } else {
+      user = await User.findByIdAndUpdate(
+        userID,
+        { $push: { favorites: advertisementID } },
+        { returnDocument: "after" }
+      );
+    }
+    return res.status(200).json({
+      status: "success",
+      message: isInclude
+        ? "İlan favorilerden kaldırıldı!"
+        : "İlan favorilere eklendi!",
+      data: user.favorites,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: `İlan ${
+        isInclude ? "favorilerden kaldırılırken" : "favorilere eklenirken"
+      } hata meydana geldi!`,
+      error: err.message,
+    });
+  }
+};
+```
 
 ## Kamil Özdemir Kodlama
 
