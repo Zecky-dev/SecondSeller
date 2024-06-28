@@ -30,7 +30,7 @@ Postman dokümantasyonuna [bu linkten](https://documenter.getpostman.com/view/34
 1. Şifre Sıfırlama
 2. Şifre Güncelleme
 3. Kullanıcının İlanlarını Getirme
-
+   Youtube Test Link: [https://www.youtube.com/watch?v=cgcMN1azfHI](https://www.youtube.com/watch?v=cgcMN1azfHI)
 ## Alper Avcı Test
 
 1. Kullanıcı Güncelleme
