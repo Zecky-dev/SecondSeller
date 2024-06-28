@@ -56,7 +56,12 @@ Figma tasarımına [bu linkten](https://www.figma.com/design/CNnsShKFEWdjxSbSwZ3
 
 ## Kamil Özdemir Tasarımları
 
-1. Sohbet Mesaj Alanı (Chat/ChatInput)
-2. Şifremi Unuttum Sayfası (Forgot)
-3. Şifre Değiştirme Sayfası (Forgot/UpdatePassword)
-4. Eposta Doğrulama Sayfası (EmailVerification)
+1. Sohbet Mesaj Alanı (Chat/ChatInput) <br>
+    <img src="./kamil_ozdemir_images/message.jpg" alt="Sohbet Ekranı" height="300" />
+2. Şifremi Unuttum Sayfası (Forgot) <br>
+    <img src="./kamil_ozdemir_images/email.jpg" alt="Sohbet Ekranı" height="300" />
+3. Şifre Değiştirme Sayfası (Forgot/UpdatePassword) <br>
+ <img src="./kamil_ozdemir_images/updatepassword.jpg" alt="Sohbet Ekranı" height="300" />
+4. Eposta Doğrulama Sayfası (EmailVerification) <br>
+ <img src="./kamil_ozdemir_images/verification.jpg" alt="Sohbet Ekranı" height="300" />
+ 
