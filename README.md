@@ -6,7 +6,7 @@
 
 **Referans Uygulama**: [Letgo.com](https://www.letgo.com/)
 
-**Uygulama Adresi**:
+**Uygulama Adresi**:  [Uygulama Tanıtımı Youtube Linki](https://www.youtube.com/watch?v=66w_2U-zpdc)
 
 **Grup Adı**: SAKIZ
 
