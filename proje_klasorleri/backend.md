@@ -266,8 +266,109 @@ const sendEmailVerification = async (req, res) => {
 ## Kamil Özdemir Kodlama
 
 1. Şifre Sıfırlama
+
+```javascript
+const passwordReset = async (req, res) => {
+  const { emailAddress } = req.query;
+  try {
+    const user = await User.findOne({ emailAddress });
+    if (user) {
+      const verificationCode = await sendResetPasswordEmail(emailAddress);
+      const resetCode = {
+        data: verificationCode,
+      };
+      return res.status(200).json({
+        status: "success",
+        message: "Şifre sıfırlama e-posta'sı gönderildi!",
+        data: resetCode.data,
+      });
+    } else {
+      return res.status(404).json({
+        status: "error",
+        message: "Kullanıcı bulunamadı!",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Şifre sırıflama sırasında hata meydana geldi.",
+      error: err.message,
+    });
+  }
+};
+```
+
 2. Şifre Güncelleme
+
+```javascript
+const updatePassword = async (req, res) => {
+  const { newPassword, emailAddress } = req.body;
+
+  const saltRounds = 10;
+
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const updatedUser = await User.findOneAndUpdate(
+      { emailAddress },
+      { password: hashedPassword },
+      {
+        returnDocument: "after",
+      }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        status: "error",
+        message: "Kullanıcı bulunamadı!",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "Şifre güncellendi!",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: "Şifre güncellenirken hata meydana geldi!",
+      error: err.message,
+    });
+  }
+};
+```
+
 3. Kullanıcının İlanlarını Getirme
+
+```javascript
+const getAdvertisementsByUserID = async (req, res) => {
+  try {
+    const userID = req.query.id;
+    const user = await User.findById(userID);
+    const userPosts = user.advertisements;
+    const favoriteAdvertisementIDs = user.favorites;
+    const ownAdvertisements = await Advertisement.find({
+      _id: { $in: userPosts },
+    });
+    const favoriteAdvertisements = await Advertisement.find({
+      _id: { $in: favoriteAdvertisementIDs },
+    });
+    return res.status(200).json({
+      status: "success",
+      message: "Kullanıcı ilanları getirildi!",
+      data: {
+        ownAdvertisements,
+        favoriteAdvertisements,
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Sunucu hatası!",
+      error: err.message,
+    });
+  }
+};
+```
 
 ## Alper Avcı Kodlama
 
